@@ -18,10 +18,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
             player1.GetComponent<PlayerControl>().Win();
+
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+            player2.GetComponent<PlayerControl>().Win();
+
         if (Input.GetKeyDown(KeyCode.W))
             player1.GetComponent<PlayerControl>().Lose();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+            player2.GetComponent<PlayerControl>().Lose();
 
         switch (state)
         {

@@ -8,6 +8,9 @@ public class PlayerControl : MonoBehaviour
     public PlayerState state;
     public List<Transform> checkPoints;
     public int currentCheckpoint;
+    public Transform cameraTarget;
+    public int cameraX;
+
 
     private void Start()
     {
@@ -45,6 +48,8 @@ public class PlayerControl : MonoBehaviour
     public void Win()
     {
         currentCheckpoint++;
+        cameraTarget.parent = gameObject.transform;
+        cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         state = PlayerState.MOVE;
     }
 
