@@ -58,29 +58,52 @@ public class GameManager : MonoBehaviour
         if (_Player1 == _Player2)
         {
             countDown = 5;
-            state = GameState.CHOOSE;
+            Invoke("ReturnToChoose", 1f);
         }else if(_Player1 < _Player2 && _Player2 != 3)
         {
-            player2.GetComponent<PlayerControl>().Win();
-            player1.GetComponent<PlayerControl>().Lose();
-
+            Invoke("Player2Win", 1f);
         }
         else if (_Player1 > _Player2 && _Player1 != 3)
         {
-            player1.GetComponent<PlayerControl>().Win();
-            player2.GetComponent<PlayerControl>().Lose();
-
+            Invoke("Player1Win", 1f);
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
             countDown = 5;
-            state = GameState.CHOOSE;
+            Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
             countDown = 5;
-            state = GameState.CHOOSE;
+            Invoke("ReturnToChoose", 1f);
         }
+    }
+
+    public void Player1Win()
+    {
+        player1.GetComponent<PlayerControl>().currentCheckpoint++;
+        player2.GetComponent<PlayerControl>().currentCheckpoint--;
+        player1.GetComponent<PlayerControl>().Win();
+        player2.GetComponent<PlayerControl>().Lose();
+        state = GameState.RELOCATE;
+    }
+
+    public void Player2Win()
+    {
+        player1.GetComponent<PlayerControl>().currentCheckpoint--;
+        player2.GetComponent<PlayerControl>().currentCheckpoint++;
+        player2.GetComponent<PlayerControl>().Win();
+        player1.GetComponent<PlayerControl>().Lose();
+        state = GameState.RELOCATE;
+    }
+
+    public void ReturnToChoose()
+    {
+        player1.GetComponent<PlayerControl>().Empate();
+        player2.GetComponent<PlayerControl>().Empate();
+        player1.GetComponent<PlayerControl>().CurrentAction = 0;
+        player2.GetComponent<PlayerControl>().CurrentAction = 0;
+        state = GameState.CHOOSE;
     }
 
     void RelocateUpdate()

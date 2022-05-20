@@ -46,7 +46,6 @@ public class PlayerControl : MonoBehaviour
         if (CurrentAction == 1) anim.SetTrigger("Recharge");
         if (CurrentAction == 2) anim.SetTrigger("Shoot");
         if (CurrentAction == 3) anim.SetTrigger("Defend");
-
     }
 
     private void ChooseUpdate()
@@ -81,22 +80,28 @@ public class PlayerControl : MonoBehaviour
         {
             transform.position = finalPos;
             anim.SetTrigger("Idle");
+            manager.ReturnToChoose();
             state = PlayerState.CHOOSE;
         }
     }
 
     public void Win()
     {
-        currentCheckpoint++;
+        //currentCheckpoint++;
         cameraTarget.parent = gameObject.transform;
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         anim.SetTrigger("Run");
         state = PlayerState.MOVE;
     }
 
+    public void Empate()
+    {
+        state = PlayerState.CHOOSE;
+    }
+
     public void Lose()
     {
-        currentCheckpoint--;
+        //currentCheckpoint--;
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = finalPos;
         state = PlayerState.CHOOSE;
