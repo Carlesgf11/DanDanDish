@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class GameManager : MonoBehaviour
     public Transform cameraTarget;
     public GameObject player1, player2;
 
+    public Text countDownText;
+
     private void Start()
     {
-        countDown = 5;
+        countDown = 6;
     }
 
     private void Update()
@@ -47,7 +50,8 @@ public class GameManager : MonoBehaviour
     void ChooseUpdate()
     {
         countDown -= Time.deltaTime;
-        if (countDown <= 0)
+        countDownText.text = ((int)countDown).ToString();
+        if (countDown <= 1)
             state = GameState.ACTION;
     }
 
@@ -57,7 +61,7 @@ public class GameManager : MonoBehaviour
         int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         if (_Player1 == _Player2)
         {
-            countDown = 5;
+            countDown = 6;
             Invoke("ReturnToChoose", 1f);
         }else if(_Player1 < _Player2 && _Player2 != 3)
         {
@@ -69,12 +73,12 @@ public class GameManager : MonoBehaviour
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
-            countDown = 5;
+            countDown = 6;
             Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
-            countDown = 5;
+            countDown = 6;
             Invoke("ReturnToChoose", 1f);
         }
     }
@@ -102,8 +106,8 @@ public class GameManager : MonoBehaviour
     {
         player1.GetComponent<PlayerControl>().Empate();
         player2.GetComponent<PlayerControl>().Empate();
-        player1.GetComponent<PlayerControl>().CurrentAction = 0;
-        player2.GetComponent<PlayerControl>().CurrentAction = 0;
+        player1.GetComponent<PlayerControl>().CurrentAction = 3;
+        player2.GetComponent<PlayerControl>().CurrentAction = 3;
         state = GameState.CHOOSE;
     }
 

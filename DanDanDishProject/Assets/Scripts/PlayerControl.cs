@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public enum PlayerState { CHOOSE, ACTION, MOVE, DIE };
+    public enum PlayerState { CHOOSE, ACTION, ANIMS ,MOVE, DIE };
     public PlayerState state;
     public GameManager manager;
     public List<Transform> checkPoints;
@@ -14,12 +14,14 @@ public class PlayerControl : MonoBehaviour
     public Transform cameraTarget;
     public int cameraX;
     public int CurrentAction;//1Recargar/ 2Disparar/ 3Defender
+    public int ammo; 
 
     Animator anim;
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        CurrentAction = 3;
         currentCheckpoint = 5;
     }
 
@@ -33,6 +35,9 @@ public class PlayerControl : MonoBehaviour
             case PlayerState.ACTION:
                 ActionUpate();
                 break;
+            case PlayerState.ANIMS:
+                AnimsUpdate();
+                break;
             case PlayerState.MOVE:
                 MoveUpdate();
                 break;
@@ -41,10 +46,31 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public  void ActionUpate()
+    public void ActionUpate()
     {
-        if (CurrentAction == 1) anim.SetTrigger("Recharge");
-        if (CurrentAction == 2) anim.SetTrigger("Shoot");
+        if (CurrentAction == 1)
+        {
+            ammo++;
+            state = PlayerState.ANIMS;
+        }
+        if (CurrentAction == 2) 
+        {
+            ammo--;
+            state = PlayerState.ANIMS;
+        }
+        if (CurrentAction == 3) state = PlayerState.ANIMS;
+    }
+
+    public void AnimsUpdate()
+    {
+        if (CurrentAction == 1)
+        {
+            anim.SetTrigger("Recharge");
+        }
+        if (CurrentAction == 2)
+        {
+            anim.SetTrigger("Shoot");
+        }
         if (CurrentAction == 3) anim.SetTrigger("Defend");
     }
 
@@ -55,13 +81,13 @@ public class PlayerControl : MonoBehaviour
             if (IsPlayer1)
             {
                 if (Input.GetKeyDown(KeyCode.A)) CurrentAction = 1;
-                if (Input.GetKeyDown(KeyCode.S)) CurrentAction = 2;
+                if (Input.GetKeyDown(KeyCode.S) && ammo >= 1) CurrentAction = 2;
                 if (Input.GetKeyDown(KeyCode.D)) CurrentAction = 3;
             }
             if (!IsPlayer1)
             {
                 if (Input.GetKeyDown(KeyCode.J)) CurrentAction = 1;
-                if (Input.GetKeyDown(KeyCode.K)) CurrentAction = 2;
+                if (Input.GetKeyDown(KeyCode.K) && ammo >= 1) CurrentAction = 2;
                 if (Input.GetKeyDown(KeyCode.L)) CurrentAction = 3;
             }
         }
@@ -88,6 +114,7 @@ public class PlayerControl : MonoBehaviour
     public void Win()
     {
         //currentCheckpoint++;
+        ammo = 0;
         cameraTarget.parent = gameObject.transform;
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         anim.SetTrigger("Run");
@@ -96,18 +123,21 @@ public class PlayerControl : MonoBehaviour
     public void GoMove()
     {
         anim.SetTrigger("Run");
-        CurrentAction = 0;
+        CurrentAction = 3;
         state = PlayerState.MOVE;
     }
     public void Empate()
     {
         anim.SetTrigger("Idle");
+        CurrentAction = 3;
         state = PlayerState.CHOOSE;
     }
 
     public void Lose()
     {
         //currentCheckpoint--;
+        CurrentAction = 3;
+        ammo = 0;
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = finalPos;
         Invoke("Empate", 1);
