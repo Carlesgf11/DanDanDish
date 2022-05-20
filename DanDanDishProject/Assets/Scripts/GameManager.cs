@@ -53,7 +53,34 @@ public class GameManager : MonoBehaviour
 
     void ActionUpdate()
     {
+        int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
+        int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+        if (_Player1 == _Player2)
+        {
+            countDown = 5;
+            state = GameState.CHOOSE;
+        }else if(_Player1 < _Player2 && _Player2 != 3)
+        {
+            player2.GetComponent<PlayerControl>().Win();
+            player1.GetComponent<PlayerControl>().Lose();
 
+        }
+        else if (_Player1 > _Player2 && _Player1 != 3)
+        {
+            player1.GetComponent<PlayerControl>().Win();
+            player2.GetComponent<PlayerControl>().Lose();
+
+        }
+        else if (_Player1 < _Player2 && _Player2 != 2)
+        {
+            countDown = 5;
+            state = GameState.CHOOSE;
+        }
+        else if (_Player1 > _Player2 && _Player1 != 2)
+        {
+            countDown = 5;
+            state = GameState.CHOOSE;
+        }
     }
 
     void RelocateUpdate()
