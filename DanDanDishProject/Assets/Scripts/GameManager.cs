@@ -90,8 +90,9 @@ public class GameManager : MonoBehaviour
 
     public void Player2Win()
     {
-        player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().currentCheckpoint++;
+
+        player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
         state = GameState.RELOCATE;

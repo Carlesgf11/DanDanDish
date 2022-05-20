@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
 
     private void ChooseUpdate()
     {
-        if (manager.state == GameManager.GameState.CHOOSE)
+        if (manager.state == GameManager.GameState.CHOOSE || manager.state == GameManager.GameState.RELOCATE)
         {
             if (IsPlayer1)
             {
@@ -95,6 +95,8 @@ public class PlayerControl : MonoBehaviour
     }
     public void GoMove()
     {
+        anim.SetTrigger("Run");
+        CurrentAction = 0;
         state = PlayerState.MOVE;
     }
     public void Empate()
