@@ -61,11 +61,11 @@ public class GameManager : MonoBehaviour
             Invoke("ReturnToChoose", 1f);
         }else if(_Player1 < _Player2 && _Player2 != 3)
         {
-            Invoke("Player2Win", 1f);
+            Player2Win();
         }
         else if (_Player1 > _Player2 && _Player1 != 3)
         {
-            Invoke("Player1Win", 1f);
+            Player1Win();
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {

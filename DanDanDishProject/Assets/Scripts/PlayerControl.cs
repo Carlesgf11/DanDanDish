@@ -91,11 +91,15 @@ public class PlayerControl : MonoBehaviour
         cameraTarget.parent = gameObject.transform;
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         anim.SetTrigger("Run");
+        Invoke("GoMove", 1f);
+    }
+    public void GoMove()
+    {
         state = PlayerState.MOVE;
     }
-
     public void Empate()
     {
+        anim.SetTrigger("Idle");
         state = PlayerState.CHOOSE;
     }
 
@@ -104,6 +108,6 @@ public class PlayerControl : MonoBehaviour
         //currentCheckpoint--;
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = finalPos;
-        state = PlayerState.CHOOSE;
+        Invoke("Empate", 1);
     }
 }
