@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTestControl : MonoBehaviour
 {
-    public GameObject ps, blood, bodyParts, bodySprite;
+    public GameObject ps, blood;
     public float fieldOfImpact, force;
     public LayerMask layerToHit;
     void Start()
@@ -25,8 +25,6 @@ public class PlayerTestControl : MonoBehaviour
         Vector2 pos = new Vector2(transform.position.x, (transform.position.y - (Random.Range(0f, 1f))));
         Instantiate(blood, pos, Quaternion.identity);
         Instantiate(ps, transform.position, ps.transform.rotation);
-        bodyParts.SetActive(true);
-        bodySprite.SetActive(false);
         Collider2D[] objects = Physics2D.OverlapCircleAll(pos, fieldOfImpact, layerToHit);
         foreach(Collider2D obj in objects)
         {
@@ -34,7 +32,7 @@ public class PlayerTestControl : MonoBehaviour
             obj.GetComponent<Rigidbody2D>().AddForce(direction * force * 100f);
 
         }
-        bodyParts.transform.SetParent(null);
+        ps.transform.SetParent(null);
         Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()

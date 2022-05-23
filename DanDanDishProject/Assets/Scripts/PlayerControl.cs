@@ -14,7 +14,10 @@ public class PlayerControl : MonoBehaviour
     public Transform cameraTarget;
     public int cameraX;
     public int CurrentAction;//1Recargar/ 2Disparar/ 3Defender
-    public int ammo; 
+    public int ammo;
+    public GameObject ps, blood;
+    public float fieldOfImpact, force;
+    public LayerMask layerToHit;
 
     Animator anim;
 
@@ -135,11 +138,26 @@ public class PlayerControl : MonoBehaviour
 
     public void Lose()
     {
+        Die();
         //currentCheckpoint--;
         CurrentAction = 3;
         ammo = 0;
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = finalPos;
         Invoke("Empate", 1);
+    }
+    public void Die()
+    {
+        Vector2 pos = new Vector2(transform.position.x, (transform.position.y - (UnityEngine.Random.Range(0f, 1f))));
+        Instantiate(blood, pos, Quaternion.identity);
+        Instantiate(ps, transform.position, ps.transform.rotation);
+        Collider2D[] objects = Physics2D.OverlapCircleAll(pos, fieldOfImpact, layerToHit);
+        foreach (Collider2D obj in objects)
+        {
+            Vector2 direction = (Vector2)obj.transform.position - pos;
+            obj.GetComponent<Rigidbody2D>().AddForce(direction * force * 100f);
+
+        }
+        ps.transform.SetParent(null);
     }
 }
