@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        countDown = 6;
+        countDown = 4;
     }
 
     private void Update()
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         if (_Player1 == _Player2)
         {
-            countDown = 6;
+            countDown = 4;
             Invoke("ReturnToChoose", 1f);
         }else if(_Player1 < _Player2 && _Player2 != 3)
         {
@@ -73,12 +73,12 @@ public class GameManager : MonoBehaviour
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
-            countDown = 6;
+            countDown = 4;
             Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
-            countDown = 6;
+            countDown = 4;
             Invoke("ReturnToChoose", 1f);
         }
     }

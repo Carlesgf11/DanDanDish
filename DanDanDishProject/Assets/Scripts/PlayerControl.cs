@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class PlayerControl : MonoBehaviour
     public GameObject ps, blood;
     public float fieldOfImpact, force;
     public LayerMask layerToHit;
+
+    public GameObject arrowImage;
+    public GameObject playerGrid;
 
     Animator anim;
 
@@ -54,11 +58,15 @@ public class PlayerControl : MonoBehaviour
         if (CurrentAction == 1)
         {
             ammo++;
+            GameObject newArrow = Instantiate(arrowImage, playerGrid.transform.position, Quaternion.identity);
+            newArrow.transform.parent = playerGrid.transform;
             state = PlayerState.ANIMS;
         }
         if (CurrentAction == 2) 
         {
             ammo--;
+            if(playerGrid.transform.childCount > 0)
+                Destroy(playerGrid.transform.GetChild(0).gameObject);
             state = PlayerState.ANIMS;
         }
         if (CurrentAction == 3) state = PlayerState.ANIMS;
@@ -118,6 +126,7 @@ public class PlayerControl : MonoBehaviour
     {
         //currentCheckpoint++;
         ammo = 0;
+        BorrahFleixas();
         cameraTarget.parent = gameObject.transform;
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         anim.SetTrigger("Run");
@@ -139,6 +148,7 @@ public class PlayerControl : MonoBehaviour
     public void Lose()
     {
         Die();
+        BorrahFleixas();
         //currentCheckpoint--;
         CurrentAction = 3;
         ammo = 0;
@@ -159,5 +169,17 @@ public class PlayerControl : MonoBehaviour
 
         }
         ps.transform.SetParent(null);
+    }
+
+    public void BorrahFleixas()
+    {
+        //Funcion patrocinada por Albert
+        for (int i = playerGrid.transform.childCount - 1; i >= 0; i--)
+        {
+            if (playerGrid.transform.childCount > 0)
+                Destroy(playerGrid.transform.GetChild(i).gameObject);
+            else
+                break;
+        }
     }
 }
