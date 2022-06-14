@@ -115,6 +115,10 @@ public class PlayerControl : MonoBehaviour
         float distance = Vector2.Distance(finalPos, transform.position);
         if (distance <= 0.02f)
         {
+            if(currentCheckpoint >= 10)
+            {
+                manager.FinishGame(gameObject);
+            }
             transform.position = finalPos;
             anim.SetTrigger("Idle");
             manager.ReturnToChoose();

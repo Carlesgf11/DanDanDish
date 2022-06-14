@@ -111,6 +111,11 @@ public class GameManager : MonoBehaviour
         state = GameState.CHOOSE;
     }
 
+    public void FinishGame(GameObject _winner)
+    {
+        print(_winner + "Wins");
+    }
+
     void RelocateUpdate()
     {
 
