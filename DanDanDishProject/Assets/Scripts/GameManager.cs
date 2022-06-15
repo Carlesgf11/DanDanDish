@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public enum GameState { CHOOSE, ACTION, RELOCATE };
+    public enum GameState { CHOOSE, ACTION, RELOCATE, GAMEFINISHED };
     public GameState state;
 
     public float countDown;
@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
 
     public Text countDownText;
 
+    public GameObject winnerPanel;
+    public Text winnerText;
+
     private void Start()
     {
         countDown = 4;
+        winnerPanel.SetActive(false);
     }
 
     private void Update()
@@ -43,6 +47,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.RELOCATE:
                 RelocateUpdate();
+                break;
+            case GameState.GAMEFINISHED:
+                //winnerText.text = 
                 break;
         }
     }
@@ -113,7 +120,10 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame(GameObject _winner)
     {
+        winnerPanel.SetActive(true);
+        winnerText.text = _winner.name + " wins";
         print(_winner + "Wins");
+        state = GameState.GAMEFINISHED;
     }
 
     void RelocateUpdate()
