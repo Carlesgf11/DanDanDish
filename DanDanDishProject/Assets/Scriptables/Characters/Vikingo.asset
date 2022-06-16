@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222903445f7e82647816e9bf82413959, type: 3}
+  m_Name: Vikingo
+  m_EditorClassIdentifier: 
+  index: 0
+  charImage: {fileID: 2685897251331570745, guid: be5cc73c908be2f4caa7bb21e137b3fc, type: 3}
