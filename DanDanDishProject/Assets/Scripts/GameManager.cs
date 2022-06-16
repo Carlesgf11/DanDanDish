@@ -70,11 +70,11 @@ public class GameManager : MonoBehaviour
         {
             countDown = 4;
             Invoke("ReturnToChoose", 1f);
-        }else if(_Player1 < _Player2 && _Player2 != 3)
+        }else if(_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
         {
             Player2Win();
         }
-        else if (_Player1 > _Player2 && _Player1 != 3)
+        else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
         {
             Player1Win();
         }
@@ -113,8 +113,8 @@ public class GameManager : MonoBehaviour
     {
         player1.GetComponent<PlayerControl>().Empate();
         player2.GetComponent<PlayerControl>().Empate();
-        player1.GetComponent<PlayerControl>().CurrentAction = 3;
-        player2.GetComponent<PlayerControl>().CurrentAction = 3;
+        player1.GetComponent<PlayerControl>().CurrentAction = 0;
+        player2.GetComponent<PlayerControl>().CurrentAction = 0;
         state = GameState.CHOOSE;
     }
 

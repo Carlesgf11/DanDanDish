@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        CurrentAction = 3;
+        CurrentAction = 0;
         currentCheckpoint = 5;
     }
 
@@ -140,13 +140,13 @@ public class PlayerControl : MonoBehaviour
     public void GoMove()
     {
         anim.SetTrigger("Run");
-        CurrentAction = 3;
+        CurrentAction = 0;
         state = PlayerState.MOVE;
     }
     public void Empate()
     {
         anim.SetTrigger("Idle");
-        CurrentAction = 3;
+        CurrentAction = 0;
         state = PlayerState.CHOOSE;
     }
 
@@ -155,7 +155,7 @@ public class PlayerControl : MonoBehaviour
         Die();
         BorrahFleixas();
         //currentCheckpoint--;
-        CurrentAction = 3;
+        CurrentAction = 0;
         ammo = 0;
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = finalPos;
