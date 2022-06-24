@@ -64,8 +64,9 @@ public class PlayerControl : MonoBehaviour
         }
         if (CurrentAction == 2) 
         {
-            ammo--;
-            if(playerGrid.transform.childCount > 0)
+            if (ammo > 0) ammo--;
+           
+            if (playerGrid.transform.childCount > 0)
                 Destroy(playerGrid.transform.GetChild(0).gameObject);
             state = PlayerState.ANIMS;
         }
@@ -115,7 +116,7 @@ public class PlayerControl : MonoBehaviour
         float distance = Vector2.Distance(finalPos, transform.position);
         if (distance <= 0.02f)
         {
-            if(currentCheckpoint >= 6)
+            if(currentCheckpoint >= 11 )
             {
                 manager.FinishGame(gameObject);
                 return;
@@ -129,8 +130,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Win()
     {
-        //currentCheckpoint++;
-        ammo = 0;
+        if (ammo > 0) ammo = 0;
         BorrahFleixas();
         cameraTarget.parent = gameObject.transform;
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
@@ -154,9 +154,9 @@ public class PlayerControl : MonoBehaviour
     {
         Die();
         BorrahFleixas();
-        //currentCheckpoint--;
         CurrentAction = 0;
-        ammo = 0;
+        if (ammo > 0) ammo = 0;
+        print(currentCheckpoint);
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = finalPos;
         Invoke("Empate", 1);
