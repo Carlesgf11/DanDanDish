@@ -2869,7 +2869,7 @@ GameObject:
   - component: {fileID: 558613663}
   - component: {fileID: 558613662}
   m_Layer: 0
-  m_Name: TierraAbajo (1)
+  m_Name: Polvo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2916,11 +2916,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 5be5637aa20b6704a970a38b0c717165, type: 3}
-  m_Color: {r: 0.8679245, g: 0.7325067, b: 0.48718405, a: 0.33333334}
+  m_Color: {r: 0.8679245, g: 0.7325067, b: 0.48718405, a: 0.56078434}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 36.323906, y: 1.6076008}
+  m_Size: {x: 36.323906, y: 0.4690324}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2934,7 +2934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558613661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8466, y: -0.65, z: 0}
+  m_LocalPosition: {x: 1.8466, y: -2.944, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4233,7 +4233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308961d7bc4fe3c49a3f56422a8e93eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxMultiplier: 0.8
+  parallaxMultiplier: 0.3
 --- !u!212 &734730659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4973,6 +4973,7 @@ GameObject:
   - component: {fileID: 858842379}
   - component: {fileID: 858842378}
   - component: {fileID: 858842380}
+  - component: {fileID: 858842381}
   m_Layer: 0
   m_Name: RenderPlayer1
   m_TagString: Untagged
@@ -5064,6 +5065,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &858842381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858842377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99203958530bd614290c8340c53cbaa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AndarPs: {fileID: 4167372485002423098, guid: ff95e486b900c8b429329325a9876652, type: 3}
 --- !u!1 &870827621
 GameObject:
   m_ObjectHideFlags: 0
@@ -8239,6 +8253,7 @@ GameObject:
   - component: {fileID: 1380805589}
   - component: {fileID: 1380805590}
   - component: {fileID: 1380805591}
+  - component: {fileID: 1380805592}
   m_Layer: 0
   m_Name: RenderPlayer2
   m_TagString: Untagged
@@ -8330,6 +8345,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1380805592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380805588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99203958530bd614290c8340c53cbaa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AndarPs: {fileID: 4167372485002423098, guid: ff95e486b900c8b429329325a9876652, type: 3}
 --- !u!1 &1394104844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8888,7 +8916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308961d7bc4fe3c49a3f56422a8e93eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxMultiplier: 0.2
+  parallaxMultiplier: 0.7
 --- !u!212 &1447580152
 SpriteRenderer:
   m_ObjectHideFlags: 0
