@@ -23,13 +23,40 @@ public class PlayerControl : MonoBehaviour
     public GameObject arrowImage;
     public GameObject playerGrid;
 
-    Animator anim;
+    public Animator anim;
+    public Animator animOK;
+
+    [Header("CargarInfoPlayer")]
+    public List<ScriptableCharacters> characters;
+    public int selectedChar;
 
     private void Start()
     {
-        anim = GetComponentInChildren<Animator>();
+        //anim = GetComponentInChildren<Animator>();
         CurrentAction = 0;
         currentCheckpoint = 5;
+        ChargePlayersInfo();
+    }
+
+    public void ChargePlayersInfo()
+    {
+        //Cargar informacion de los players
+        characters = manager.characters;
+
+        if (IsPlayer1)
+            selectedChar = manager.Player1Char;
+        else
+            selectedChar = manager.Player2Char;
+
+        ps = characters[selectedChar].bodyParts;
+        //anim = characters[selectedChar].anim;
+
+        GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
+
+        if(!IsPlayer1)
+            renderChar.GetComponent<SpriteRenderer>().flipX = true;
+
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()

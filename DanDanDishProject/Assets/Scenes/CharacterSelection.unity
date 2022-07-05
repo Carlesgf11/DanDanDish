@@ -274,7 +274,7 @@ RectTransform:
   m_Children:
   - {fileID: 225099423}
   m_Father: {fileID: 1367225426}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -325,14 +325,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78576276}
-        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 3
+      - m_Target: {fileID: 1553344199}
+        m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
+        m_MethodName: ToGameScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2130228605}
+        m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
+        m_MethodName: ToGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -696,7 +708,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533957827}
+      - m_Target: {fileID: 1553344199}
         m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
         m_MethodName: NextBtn
         m_Mode: 1
@@ -779,7 +791,7 @@ RectTransform:
   - {fileID: 1553344198}
   - {fileID: 2130228604}
   m_Father: {fileID: 1367225426}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1099,7 +1111,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533957827}
+      - m_Target: {fileID: 1553344199}
         m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
         m_MethodName: PrevBtn
         m_Mode: 1
@@ -1240,8 +1252,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 216135577}
   - {fileID: 330559858}
+  - {fileID: 216135577}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1338,7 +1350,7 @@ GameObject:
   - component: {fileID: 1533957828}
   - component: {fileID: 1533957827}
   m_Layer: 0
-  m_Name: CharSelectionManager
+  m_Name: CharSelectionList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,15 +1365,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533957826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 038667d62ee50bb45ad699ccbb85496f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f2fe2f32c3943744ba408ef1668a9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
+  - {fileID: 11400000, guid: 437981d38aede8a45b57097f9988a555, type: 2}
   - {fileID: 11400000, guid: c9c1fbca3852320459c3440cbb0a2303, type: 2}
   - {fileID: 11400000, guid: 7b08ee87374659143a18113f5dd69000, type: 2}
-  - {fileID: 11400000, guid: 437981d38aede8a45b57097f9988a555, type: 2}
-  currentCharacter: 0
-  charImage: {fileID: 624278429}
 --- !u!4 &1533957828
 Transform:
   m_ObjectHideFlags: 0
@@ -1533,6 +1543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1553344198}
+  - component: {fileID: 1553344199}
   m_Layer: 5
   m_Name: SeleccionPlayer1
   m_TagString: Untagged
@@ -1561,6 +1572,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1553344199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553344197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038667d62ee50bb45ad699ccbb85496f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters: []
+  currentCharacter: 0
+  charImage: {fileID: 624278429}
+  player: 1
+  charList: {fileID: 1533957827}
 --- !u!1 &1804117915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,7 +1762,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533957827}
+      - m_Target: {fileID: 2130228605}
         m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
         m_MethodName: PrevBtn
         m_Mode: 1
@@ -1866,7 +1894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533957827}
+      - m_Target: {fileID: 2130228605}
         m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
         m_MethodName: NextBtn
         m_Mode: 1
@@ -1925,8 +1953,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130228604}
+  - component: {fileID: 2130228605}
   m_Layer: 5
-  m_Name: SeleccionPlayer1 (1)
+  m_Name: SeleccionPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1953,3 +1982,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2130228605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130228603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038667d62ee50bb45ad699ccbb85496f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters: []
+  currentCharacter: 0
+  charImage: {fileID: 1804117918}
+  player: 2
+  charList: {fileID: 1533957827}

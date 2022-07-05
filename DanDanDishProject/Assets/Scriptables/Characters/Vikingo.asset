@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   charImage: {fileID: 2685897251331570745, guid: be5cc73c908be2f4caa7bb21e137b3fc, type: 3}
+  bodyParts: {fileID: 7174158112161191631, guid: 9a1e678ebf621064aa661f2fa771e944, type: 3}

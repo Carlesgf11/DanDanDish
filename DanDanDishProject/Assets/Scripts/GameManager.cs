@@ -17,10 +17,18 @@ public class GameManager : MonoBehaviour
     public GameObject winnerPanel;
     public Text winnerText;
 
+    [Header("CargarInfoPlayers")]
+    public int Player1Char, Player2Char;
+    public List<ScriptableCharacters> characters;
+
     private void Start()
     {
         countDown = 4;
         winnerPanel.SetActive(false);
+        Player1Char = PlayerPrefs.GetInt("Player1", 0);
+        Player2Char = PlayerPrefs.GetInt("Player2", 0);
+        //print(Player1Char);
+        //print(Player2Char);
     }
 
     private void Update()
