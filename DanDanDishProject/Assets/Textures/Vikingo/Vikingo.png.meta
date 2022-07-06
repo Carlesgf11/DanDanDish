@@ -154,9 +154,9 @@ TextureImporter:
       name: Vikingo_1
       rect:
         serializedVersion: 2
-        x: 12
+        x: 13
         y: 0
-        width: 12
+        width: 11
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -175,9 +175,9 @@ TextureImporter:
       name: Vikingo_2
       rect:
         serializedVersion: 2
-        x: 24
+        x: 25
         y: 0
-        width: 12
+        width: 11
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -198,7 +198,7 @@ TextureImporter:
         serializedVersion: 2
         x: 36
         y: 0
-        width: 12
+        width: 11
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
