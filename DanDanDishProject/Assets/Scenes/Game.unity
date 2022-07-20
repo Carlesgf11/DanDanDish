@@ -919,6 +919,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1942847457}
     m_Modifications:
+    - target: {fileID: 2446677851436058941, guid: 68c96793ec082cf4ab506f2584ace9e0, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2446677851436058942, guid: 68c96793ec082cf4ab506f2584ace9e0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2548,6 +2552,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &472671841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472671842}
+  m_Layer: 3
+  m_Name: ArrowSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &472671842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472671841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1484100416}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &539170906
 GameObject:
   m_ObjectHideFlags: 0
@@ -9378,7 +9412,7 @@ GameObject:
   - component: {fileID: 1484100418}
   m_Layer: 3
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9397,6 +9431,7 @@ Transform:
   - {fileID: 1219961618}
   - {fileID: 25883627}
   - {fileID: 2075486007}
+  - {fileID: 472671842}
   m_Father: {fileID: 1839174574}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9410,10 +9445,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25062716, y: -0.14180148}
+  m_Offset: {x: -0.2107408, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9424,7 +9459,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5012543, y: 1.6014717}
+  m_Size: {x: 1.0797727, y: 1.6014717}
   m_EdgeRadius: 0
 --- !u!114 &1484100418
 MonoBehaviour:
@@ -9471,6 +9506,9 @@ MonoBehaviour:
   animOK: {fileID: 0}
   characters: []
   selectedChar: 0
+  arrowPref: {fileID: 7520610529522563627, guid: 1c739ea6548cf1b4ab394b79d768c490, type: 3}
+  arrowSpawnPos: {fileID: 472671842}
+  arrowControl: {fileID: 0}
 --- !u!1 &1506284815
 GameObject:
   m_ObjectHideFlags: 0
@@ -11138,6 +11176,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1727666558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1727666559}
+  m_Layer: 3
+  m_Name: ArrowSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1727666559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727666558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1942847457}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740303590
 GameObject:
   m_ObjectHideFlags: 0
@@ -12294,7 +12362,7 @@ GameObject:
   - component: {fileID: 1942847459}
   m_Layer: 3
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12313,6 +12381,7 @@ Transform:
   - {fileID: 66040798}
   - {fileID: 1240771057}
   - {fileID: 1697058618}
+  - {fileID: 1727666559}
   m_Father: {fileID: 1165028030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12326,10 +12395,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25062716, y: -0.14180148}
+  m_Offset: {x: 0.19113708, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12340,7 +12409,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5012543, y: 1.6014717}
+  m_Size: {x: 1.1189802, y: 1.6014717}
   m_EdgeRadius: 0
 --- !u!114 &1942847459
 MonoBehaviour:
@@ -12387,6 +12456,9 @@ MonoBehaviour:
   animOK: {fileID: 0}
   characters: []
   selectedChar: 0
+  arrowPref: {fileID: 7520610529522563627, guid: 1c739ea6548cf1b4ab394b79d768c490, type: 3}
+  arrowSpawnPos: {fileID: 1727666559}
+  arrowControl: {fileID: 0}
 --- !u!1 &1942979294
 GameObject:
   m_ObjectHideFlags: 0

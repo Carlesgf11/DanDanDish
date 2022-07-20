@@ -30,6 +30,12 @@ public class PlayerControl : MonoBehaviour
     public List<ScriptableCharacters> characters;
     public int selectedChar;
 
+    [Header("Arrow Render Shoot")]
+    public GameObject arrowPref;
+    public Transform arrowSpawnPos;
+    public ArrowControl arrowControl;
+    private bool canSpawnArrow;
+
     private void Start()
     {
         //anim = GetComponentInChildren<Animator>();
@@ -109,12 +115,28 @@ public class PlayerControl : MonoBehaviour
         if (CurrentAction == 2)
         {
             anim.SetTrigger("Shoot");
+            if (IsPlayer1)
+                ShootArrow(Vector3.right, Quaternion.identity);
+            else
+                ShootArrow(Vector3.right, Quaternion.Euler(0, 0, 180));
         }
         if (CurrentAction == 3) anim.SetTrigger("Defend");
     }
 
+    public void ShootArrow(Vector3 _dir, Quaternion _rot)
+    {
+        if(canSpawnArrow)
+        {
+            GameObject newArrow = Instantiate(arrowPref, arrowSpawnPos.position, _rot);
+            arrowControl = newArrow.GetComponent<ArrowControl>();
+            arrowControl.arrowDir = _dir;
+            canSpawnArrow = false;
+        }
+    }
+
     private void ChooseUpdate()
     {
+        canSpawnArrow = true;
         if (manager.state == GameManager.GameState.CHOOSE || manager.state == GameManager.GameState.RELOCATE)
         {
             if (IsPlayer1)
@@ -179,15 +201,14 @@ public class PlayerControl : MonoBehaviour
 
     public void Lose()
     {
-        Die();
+        Invoke("Die", 0.35f);
         BorrahFleixas();
         CurrentAction = 0;
         if (ammo > 0) ammo = 0;
         print(currentCheckpoint);
-        Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
-        transform.position = finalPos;
         Invoke("Empate", 1);
     }
+
     public void Die()
     {
         Vector2 pos = new Vector2(transform.position.x, (transform.position.y - (UnityEngine.Random.Range(0f, 1f))));
@@ -198,9 +219,12 @@ public class PlayerControl : MonoBehaviour
         {
             Vector2 direction = (Vector2)obj.transform.position - pos;
             obj.GetComponent<Rigidbody2D>().AddForce(direction * force * 100f);
-
         }
         ps.transform.SetParent(null);
+
+        //Cambiar pos
+        Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
+        transform.position = finalPos;
     }
 
     public void BorrahFleixas()
