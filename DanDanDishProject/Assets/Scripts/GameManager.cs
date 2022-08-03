@@ -21,10 +21,18 @@ public class GameManager : MonoBehaviour
     public int Player1Char, Player2Char;
     public List<ScriptableCharacters> characters;
 
+    [Header("Pause")]
+    public GameObject pausePanel;
+    public GameObject pauseContentPanel;
+    public GameObject optionsPanel;
+
     private void Start()
     {
         countDown = 4;
+        pauseContentPanel.SetActive(true);
         winnerPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(false);
         Player1Char = PlayerPrefs.GetInt("Player1", 0);
         Player2Char = PlayerPrefs.GetInt("Player2", 0);
         //print(Player1Char);
@@ -33,17 +41,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-            player1.GetComponent<PlayerControl>().Win();
-
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-            player2.GetComponent<PlayerControl>().Win();
-
-        if (Input.GetKeyDown(KeyCode.W))
-            player1.GetComponent<PlayerControl>().Lose();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-            player2.GetComponent<PlayerControl>().Lose();
+        //if(Input.GetKeyDown(KeyCode.Alpha1))
+        //    player1.GetComponent<PlayerControl>().Win();
+        //
+        //if(Input.GetKeyDown(KeyCode.Alpha2))
+        //    player2.GetComponent<PlayerControl>().Win();
+        //
+        //if (Input.GetKeyDown(KeyCode.W))
+        //    player1.GetComponent<PlayerControl>().Lose();
+        //
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //    player2.GetComponent<PlayerControl>().Lose();
 
         switch (state)
         {
@@ -136,6 +144,31 @@ public class GameManager : MonoBehaviour
 
     void RelocateUpdate()
     {
-
+        
     }
+
+    #region Pause
+    public void OnApplicationPause(bool _pause)
+    {
+        if(_pause)
+        {
+            Time.timeScale = 0;
+            pausePanel.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+        }
+    }
+
+    public void PauseON()
+    {
+        OnApplicationPause(true);
+    }
+    public void PauseOFF()
+    {
+        OnApplicationPause(false);
+    }
+    #endregion
 }
