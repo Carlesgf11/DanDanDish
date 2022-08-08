@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         pauseContentPanel.SetActive(true);
         winnerPanel.SetActive(false);
         pausePanel.SetActive(false);
-        optionsPanel.SetActive(false);
+        //optionsPanel.SetActive(false); //Si se hace este set active se activa la funcion onDisable del VolumeSetting y se pone chungo todo
         Player1Char = PlayerPrefs.GetInt("Player1", 0);
         Player2Char = PlayerPrefs.GetInt("Player2", 0);
         //print(Player1Char);
