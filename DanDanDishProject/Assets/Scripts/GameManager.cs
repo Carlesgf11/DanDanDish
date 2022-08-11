@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
     public GameObject pauseContentPanel;
     public GameObject optionsPanel;
 
+    [Header("Sounds")]
+    public AudioManager audioManager;
+    public AudioSource arrowImpact;
+    public AudioSource arrowImpact2;
+
     private void Start()
     {
         countDown = 4;
@@ -112,6 +117,7 @@ public class GameManager : MonoBehaviour
         player2.GetComponent<PlayerControl>().currentCheckpoint--;
         player1.GetComponent<PlayerControl>().Win();
         player2.GetComponent<PlayerControl>().Lose();
+        audioManager.PlaySound(arrowImpact);
         state = GameState.RELOCATE;
     }
 
@@ -122,6 +128,7 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
+        audioManager.PlaySound(arrowImpact);
         state = GameState.RELOCATE;
     }
 

@@ -36,4 +36,9 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat(VolumeSettings.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
         mixer.SetFloat(VolumeSettings.MIXER_SFX, Mathf.Log10(sfxVolume) * 20);
     }
+
+    public void PlaySound(AudioSource _sound)
+    {
+        _sound.Play();
+    }
 }
