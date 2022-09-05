@@ -168,14 +168,5 @@ public class GameManager : MonoBehaviour
             pausePanel.SetActive(false);
         }
     }
-
-    public void PauseON()
-    {
-        OnApplicationPause(true);
-    }
-    public void PauseOFF()
-    {
-        OnApplicationPause(false);
-    }
     #endregion
 }
