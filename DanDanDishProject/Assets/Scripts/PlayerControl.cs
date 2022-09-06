@@ -223,8 +223,13 @@ public class PlayerControl : MonoBehaviour
         ps.transform.SetParent(null);
 
         //Cambiar pos
-        Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
-        transform.position = finalPos;
+        if(currentCheckpoint >= 0)
+        {
+            Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
+            transform.position = finalPos;
+        }
+        else
+            gameObject.SetActive(false);
     }
 
     public void BorrahFleixas()

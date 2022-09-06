@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 59839875}
   - component: {fileID: 59839874}
   - component: {fileID: 59839873}
+  - component: {fileID: 59839876}
   m_Layer: 5
   m_Name: PanelBtns
   m_TagString: Untagged
@@ -382,6 +383,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59839871}
   m_CullTransparentMesh: 1
+--- !u!114 &59839876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59839871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79c490577a1c76489ee5f8e7ab94a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+  generalSlider: {fileID: 1573786435}
+  musicSlider: {fileID: 583658003}
+  sfxSlider: {fileID: 396476106}
 --- !u!1 &113796752
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +872,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 261734768}
-  - component: {fileID: 261734769}
   m_Layer: 5
   m_Name: OptionsContent
   m_TagString: Untagged
@@ -884,22 +900,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &261734769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 261734767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b79c490577a1c76489ee5f8e7ab94a58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
-  generalSlider: {fileID: 1573786435}
-  musicSlider: {fileID: 583658003}
-  sfxSlider: {fileID: 396476106}
 --- !u!1 &396476104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1290,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &582183938
 GameObject:
@@ -4391,7 +4391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6917965994361244269, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244269, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: m_LocalPosition.x

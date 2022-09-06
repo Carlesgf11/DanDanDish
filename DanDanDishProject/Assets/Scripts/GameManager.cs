@@ -46,8 +46,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.Alpha1))
-        //    player1.GetComponent<PlayerControl>().Win();
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Player1Win();
+            //player1.GetComponent<PlayerControl>().Win();
         //
         //if(Input.GetKeyDown(KeyCode.Alpha2))
         //    player2.GetComponent<PlayerControl>().Win();

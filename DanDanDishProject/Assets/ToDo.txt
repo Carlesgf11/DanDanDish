@@ -1,0 +1,5 @@
+- Arreglar el escenario cuando se gana
+- Animación ganar (timeline)
+- Hacer el switch platform
+- UI escena Game para movil
+- Multi xD
