@@ -32,5 +32,7 @@ public class Parallax : MonoBehaviour
             transform.Translate(new Vector3(-spriteWidth, transform.position.y, transform.position.z));
             startPosition -= spriteWidth;
         }
+
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 }
