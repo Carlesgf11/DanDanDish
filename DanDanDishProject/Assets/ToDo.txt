@@ -1,4 +1,4 @@
 - Animación ganar (timeline)
-- Hacer el switch platform
-- UI escena Game para movil
+- Acabar UI pantalla game
+- Acabar UI pantalla character selector
 - Multi xD

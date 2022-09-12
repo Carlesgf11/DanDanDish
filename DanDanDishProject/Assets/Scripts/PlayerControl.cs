@@ -158,6 +158,12 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void ButtonChoose(int _action)
+    {
+        if(IsPlayer1)
+            CurrentAction = _action;
+    }
+
     public void MoveUpdate()
     {
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
