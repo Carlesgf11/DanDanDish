@@ -88,8 +88,10 @@ public class PlayerControl : MonoBehaviour
 
     public void ActionUpate()
     {
+        manager.TimelineIsDone = true;
         if (CurrentAction == 1)
         {
+
             ammo++;
             GameObject newArrow = Instantiate(arrowImage, playerGrid.transform.position, Quaternion.identity);
             newArrow.transform.parent = playerGrid.transform;
@@ -103,24 +105,33 @@ public class PlayerControl : MonoBehaviour
                 Destroy(playerGrid.transform.GetChild(0).gameObject);
             state = PlayerState.ANIMS;
         }
-        if (CurrentAction == 3) state = PlayerState.ANIMS;
+        if (CurrentAction == 3)
+        {
+            state = PlayerState.ANIMS;
+        }
     }
 
-    public void AnimsUpdate()
+        public void AnimsUpdate()
     {
         if (CurrentAction == 1)
         {
+
             anim.SetTrigger("Recharge");
         }
         if (CurrentAction == 2)
         {
+
             anim.SetTrigger("Shoot");
             if (IsPlayer1)
                 ShootArrow(Vector3.right, Quaternion.identity);
             else
                 ShootArrow(Vector3.right, Quaternion.Euler(0, 0, 180));
         }
-        if (CurrentAction == 3) anim.SetTrigger("Defend");
+        if (CurrentAction == 3)
+        {
+
+            anim.SetTrigger("Defend");
+        }
     }
 
     public void ShootArrow(Vector3 _dir, Quaternion _rot)
@@ -160,18 +171,26 @@ public class PlayerControl : MonoBehaviour
 
     public void ButtonChoose(int _action)
     {
-        if(IsPlayer1)
-            CurrentAction = _action;
+
+        if (IsPlayer1)
+        {
+            if (_action == 2 && ammo >= 1)
+                CurrentAction = _action;
+            if (_action != 2)
+                CurrentAction = _action;
+        }
     }
 
     public void MoveUpdate()
     {
+
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, finalPos, 10 * Time.deltaTime);
         float distance = Vector2.Distance(finalPos, transform.position);
         if (distance <= 0.02f)
         {
-            if(currentCheckpoint >= 11 )
+
+            if (currentCheckpoint >= 11 )
             {
                 manager.FinishGame(gameObject);
                 return;
@@ -191,9 +210,11 @@ public class PlayerControl : MonoBehaviour
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         anim.SetTrigger("Run");
         Invoke("GoMove", 1f);
+
     }
     public void GoMove()
     {
+
         anim.SetTrigger("Run");
         CurrentAction = 0;
         state = PlayerState.MOVE;

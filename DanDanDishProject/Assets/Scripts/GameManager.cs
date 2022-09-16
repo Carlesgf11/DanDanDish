@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Animator ButtonsAnim;
     public enum GameState { CHOOSE, ACTION, RELOCATE, GAMEFINISHED };
     public GameState state;
-
+    public bool TimelineIsDone = false;
+    bool TimelineOutDone = false;
     public float countDown;
     public Transform cameraTarget;
     public GameObject player1, player2;
@@ -78,21 +82,37 @@ public class GameManager : MonoBehaviour
 
     void ChooseUpdate()
     {
+
         countDown -= Time.deltaTime;
         countDownText.text = ((int)countDown).ToString();
-        if (countDown <= 1)
+        ButtonsAnim.SetBool("Appear", true);
+
+
+        if (countDown < 1)
+        {
+            ButtonsAnim.SetBool("Appear", false);
+            countDown = 0;
+            EventSystem.current.SetSelectedGameObject(null);
             state = GameState.ACTION;
+        }
+
+        
     }
 
     void ActionUpdate()
     {
+
+
+
         int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
         int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         if (_Player1 == _Player2)
         {
             countDown = 4;
             Invoke("ReturnToChoose", 1f);
-        }else if(_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
+
+        }
+        else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
         {
             Player2Win();
         }
@@ -103,14 +123,19 @@ public class GameManager : MonoBehaviour
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
             countDown = 4;
+
             Invoke("ReturnToChoose", 1f);
+
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
             countDown = 4;
+
             Invoke("ReturnToChoose", 1f);
         }
+
     }
+
 
     public void Player1Win()
     {
@@ -140,6 +165,7 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<PlayerControl>().CurrentAction = 0;
         player2.GetComponent<PlayerControl>().CurrentAction = 0;
         state = GameState.CHOOSE;
+
     }
 
     public void FinishGame(GameObject _winner)
