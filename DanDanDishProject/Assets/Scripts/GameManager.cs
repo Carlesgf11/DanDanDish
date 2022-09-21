@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Animator ButtonsAnim;
+    public List<GameObject> flagsImages;
     public enum GameState { CHOOSE, ACTION, RELOCATE, GAMEFINISHED };
     public GameState state;
     public bool TimelineIsDone = false;
@@ -46,6 +47,10 @@ public class GameManager : MonoBehaviour
         Player2Char = PlayerPrefs.GetInt("Player2", 0);
         //print(Player1Char);
         //print(Player2Char);
+        for (int i = 0; i < flagsImages.Count; i++)
+        {
+            flagsImages[i].GetComponent<Image>().sprite = characters[Player1Char].flagSprite;
+        }
     }
 
     private void Update()

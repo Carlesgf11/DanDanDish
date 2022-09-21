@@ -9,6 +9,7 @@ public class CharSelectionManager : MonoBehaviour
     public List<ScriptableCharacters> characters;
     public int currentCharacter;
     public Image charImage;
+    public GameObject flagImage;
     public int player;
 
     [Header("Accesos")]
@@ -23,6 +24,7 @@ public class CharSelectionManager : MonoBehaviour
     void Update()
     {
         charImage.sprite = characters[currentCharacter].charImage;
+        flagImage.GetComponent<Animator>().runtimeAnimatorController = characters[currentCharacter].flagAnim;
     }
 
     public void NextBtn()

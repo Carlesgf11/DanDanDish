@@ -256,7 +256,10 @@ public class PlayerControl : MonoBehaviour
             transform.position = finalPos;
         }
         else
+        {
             gameObject.SetActive(false);
+            SlowMo();
+        }
     }
 
     public void BorrahFleixas()
@@ -269,5 +272,17 @@ public class PlayerControl : MonoBehaviour
             else
                 break;
         }
+    }
+
+    void SlowMo()
+    {
+        Camera.main.GetComponent<CameraShake>().ShakeIt();
+        Time.timeScale = Mathf.Lerp(Time.timeScale, 0.5f, 0.5f);
+        Invoke("NoSlowMo", 0.75f);
+    }
+    void NoSlowMo()
+    {
+        Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, 0.2f);
+
     }
 }
