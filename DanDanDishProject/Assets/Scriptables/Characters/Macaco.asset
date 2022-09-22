@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   charImage: {fileID: 8140514596440196466, guid: 2c7465391cd4d204db6b5891bc537b5e, type: 3}
-  flagSprite: {fileID: 21300000, guid: a192119d44661e643bedd087db667181, type: 3}
+  flagSprite: {fileID: 21300000, guid: 1d673a93d406cd24b937674718f84409, type: 3}
   bodyParts: {fileID: 7174158112161191631, guid: 1ebb6b429e0863b44a3f6aa0bcc4ecac, type: 3}
   anim: {fileID: 5206758012578735257, guid: 4ea4af66e5eebd54c86d506b325d7728, type: 3}
-  flagAnim: {fileID: 9100000, guid: 1cd53ae91ae69cd45996ec2e0e001263, type: 2}
+  flagAnim: {fileID: 9100000, guid: a30d2a3d13ffd4b4eaec33e65e7a6d28, type: 2}
