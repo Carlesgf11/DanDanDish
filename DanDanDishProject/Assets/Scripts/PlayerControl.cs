@@ -258,6 +258,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            Camera.main.GetComponent<HitStop>().Stop(0.25f);
             SlowMo();
         }
     }

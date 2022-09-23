@@ -98,7 +98,6 @@ public class GameManager : MonoBehaviour
         {
             ButtonsAnim.SetBool("Appear", false);
             countDown = 0;
-            EventSystem.current.SetSelectedGameObject(null);
             state = GameState.ACTION;
         }
 
@@ -107,9 +106,7 @@ public class GameManager : MonoBehaviour
 
     void ActionUpdate()
     {
-
-
-
+        EventSystem.current.SetSelectedGameObject(null);
         int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
         int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         if (_Player1 == _Player2)
