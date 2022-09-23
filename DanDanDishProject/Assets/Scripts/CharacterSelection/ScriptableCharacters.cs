@@ -10,6 +10,7 @@ public class ScriptableCharacters : ScriptableObject
     public Sprite flagSprite;
     public GameObject bodyParts;
     public GameObject anim;
+    public Color UIColor;
     public RuntimeAnimatorController flagAnim;
 }
 

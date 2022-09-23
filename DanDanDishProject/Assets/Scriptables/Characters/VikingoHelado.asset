@@ -17,4 +17,5 @@ MonoBehaviour:
   flagSprite: {fileID: 21300000, guid: 48c03779ccc62534289d885b2b6f3470, type: 3}
   bodyParts: {fileID: 7174158112161191631, guid: 3b9e8ac4f9acdbc4bab86a2182f423de, type: 3}
   anim: {fileID: 2446677851436058943, guid: 68c96793ec082cf4ab506f2584ace9e0, type: 3}
+  UIColor: {r: 0.7882353, g: 1, b: 0.9529412, a: 1}
   flagAnim: {fileID: 9100000, guid: 9de62ffb0a515e94f89c113922d6cd7f, type: 2}

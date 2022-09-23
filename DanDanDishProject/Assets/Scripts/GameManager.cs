@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < flagsImages.Count; i++)
         {
             flagsImages[i].GetComponent<Image>().sprite = characters[Player1Char].flagSprite;
+            flagsImages[i].transform.GetChild(0).GetComponent<Image>().color = characters[Player1Char].UIColor;
         }
     }
 
