@@ -238,6 +238,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
+
         Vector2 pos = new Vector2(transform.position.x, (transform.position.y - (UnityEngine.Random.Range(0f, 1f))));
         Instantiate(blood, pos, Quaternion.identity);
         Instantiate(ps, transform.position, ps.transform.rotation);
@@ -257,9 +258,9 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
-            Camera.main.GetComponent<HitStop>().Stop(0.25f);
+            Camera.main.GetComponent<HitStop>().Stop(0.3f);
             SlowMo();
+            gameObject.SetActive(false);
         }
     }
 
