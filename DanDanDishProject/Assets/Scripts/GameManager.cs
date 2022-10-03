@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //Prueba Commit
     public Animator ButtonsAnim;
     public List<GameObject> flagsImages;
     public enum GameState { CHOOSE, ACTION, RELOCATE, GAMEFINISHED };

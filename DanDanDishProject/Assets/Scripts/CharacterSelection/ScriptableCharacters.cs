@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/New Character")]
 public class ScriptableCharacters : ScriptableObject
 {
+    //Prueba Commit
+
     public int index;
     public Sprite charImage;
     public Sprite flagSprite;

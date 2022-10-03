@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
+    //Prueba Commit
     public enum PlayerState { CHOOSE, ACTION, ANIMS ,MOVE, DIE };
     public PlayerState state;
     public GameManager manager;
