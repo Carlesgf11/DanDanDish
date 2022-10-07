@@ -7,11 +7,15 @@ public class PlayerTests : MonoBehaviour
 {
     private float speed = 10;
     PhotonView view;
-
+    public int player;
 
     private void Start()
     {
         view = GetComponent<PhotonView>();
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            player = 1;
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+            player = 2;
     }
 
     private void Update()
