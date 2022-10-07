@@ -109,7 +109,8 @@ namespace Photon.Pun.Demo.PunBasics
 				LogFeedback("Joining Room...");
 				// #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
 				PhotonNetwork.JoinOrCreateRoom("Room1", new RoomOptions { MaxPlayers = this.maxPlayersPerRoom }, TypedLobby.Default);
-			}else{
+			}
+			else{
 
 				LogFeedback("Connecting...");
 				
@@ -189,6 +190,7 @@ namespace Photon.Pun.Demo.PunBasics
 
 			isConnecting = false;
 			controlPanel.SetActive(true);
+
 		}
 
 		/// <summary>
@@ -208,9 +210,9 @@ namespace Photon.Pun.Demo.PunBasics
 			Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.\nFrom here on, your game would be running.");
 		
 			// #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
-			if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+			if (PhotonNetwork.CurrentRoom.PlayerCount == 1 || PhotonNetwork.CurrentRoom.PlayerCount == 2)
 			{
-				Debug.Log("We load the 'Room for 1' ");
+				Debug.Log("We load the 'Room for 2' ");
 
 				// #Critical
 				// Load the Room Level. 
