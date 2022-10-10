@@ -10,13 +10,14 @@ ScriptsOnlyBuild:
     - CharSelectionManager
     - CharactersGameObjectList
     - ConnectToServer
-    - CreateAndJoin
     - GameManager
     - HitStop
+    - LobbyManager
     - Parallax
     - PlayerAnimationEvents
     - PlayerControl
     - PlayerTests
+    - RoomItem
     - SceneManagement
     - ScriptableCharacters
     - SpawnPlayers
@@ -77,6 +78,12 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     Unity.Timeline.Editor.dll:
     - TimelinePreferences
     - UnityEditor.Timeline.SequenceHierarchy
@@ -100,7 +107,10 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.Outline
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
@@ -344,6 +354,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1868}
     - Class: 114
+      Script: {instanceID: 1954}
+    - Class: 114
       Script: {instanceID: 1982}
     - Class: 114
       Script: {instanceID: 1992}
@@ -356,6 +368,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3066}
     - Class: 114
+      Script: {instanceID: 3116}
+    - Class: 114
       Script: {instanceID: 3152}
     - Class: 114
       Script: {instanceID: 3202}
@@ -364,11 +378,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3306}
     - Class: 114
+      Script: {instanceID: 3370}
+    - Class: 114
       Script: {instanceID: 3582}
     - Class: 114
       Script: {instanceID: 3592}
     - Class: 114
       Script: {instanceID: 3594}
+    - Class: 114
+      Script: {instanceID: 3598}
     - Class: 114
       Script: {instanceID: 3722}
     - Class: 114
@@ -376,13 +394,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4070}
     - Class: 114
+      Script: {instanceID: 4156}
+    - Class: 114
       Script: {instanceID: 4228}
     - Class: 114
       Script: {instanceID: 4272}
     - Class: 114
       Script: {instanceID: 4356}
     - Class: 114
+      Script: {instanceID: 4882}
+    - Class: 114
       Script: {instanceID: 5058}
+    - Class: 114
+      Script: {instanceID: 5128}
     - Class: 114
       Script: {instanceID: 5566}
     - Class: 114
@@ -393,6 +417,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6078}
     - Class: 114
       Script: {instanceID: 6304}
+    - Class: 114
+      Script: {instanceID: 20386}
+    - Class: 114
+      Script: {instanceID: 24406}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -587,6 +615,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 65
@@ -616,7 +646,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1868}
     - Class: 114
+      Script: {instanceID: 1954}
+    - Class: 114
       Script: {instanceID: 1992}
+    - Class: 114
+      Script: {instanceID: 2390}
     - Class: 114
       Script: {instanceID: 2530}
     - Class: 114
@@ -646,9 +680,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5126}
     - Class: 114
+      Script: {instanceID: 5276}
+    - Class: 114
       Script: {instanceID: 5634}
     - Class: 114
       Script: {instanceID: 5700}
+    - Class: 114
+      Script: {instanceID: 5702}
     - Class: 114
       Script: {instanceID: 5896}
     - Class: 114
@@ -2324,12 +2362,6 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 9048cf998753be395c210eb841c1ed05
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CreateAndJoin
-  - hash:
-      serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -2424,6 +2456,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: AmbientOcclusion
+  - hash:
+      serializedVersion: 2
+      Hash: 319e320af3e596cdaa0537fe71ef35fa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyManager
+  - hash:
+      serializedVersion: 2
+      Hash: 272ba6c1ec8fb07f160d8c9b346c0ce2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RoomItem
   platform: 19
   scenePathNames:
   - Assets/Scenes/Loading.unity
@@ -2435,4 +2479,4 @@ ScriptsOnlyBuild:
     for 1.unity
   - Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
     for 2.unity
-  playerPath: C:/Users/gonza/Documents/GitHub/DanDanDishCosa/Blds/DanDanDishProject.exe
+  playerPath: D:/GitHub/DanDanDish/Build/DanDanDishProject.exe
