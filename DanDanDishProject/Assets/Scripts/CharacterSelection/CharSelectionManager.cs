@@ -24,10 +24,27 @@ public class CharSelectionManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        view = GetComponent<PhotonView>();
+        
         currentCharacter = 0;
+        
+        SelectPlayer();
+        charList = FindObjectOfType<CharSelectionList>();
         characters = charList.characters;
+        view = GetComponent<PhotonView>();  
         view.RPC("PhtnChangeColor", RpcTarget.AllBuffered);
+        
+    }
+    void SelectPlayer() //Identificar ID player
+    {
+        view = GetComponent<PhotonView>();
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            player = 1;
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            player = 2;
+            transform.GetChild(0).localScale = new Vector3(-1,1,1);
+        }
+            
     }
 
     //public void SetPlayerInfo(Player _player)
