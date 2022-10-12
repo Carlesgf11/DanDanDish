@@ -19,7 +19,8 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public Animator playerFlagAnimator;
     //public Sprite[] avatars;
 
-    Player player;
+    public Player player;
+    public GameObject PlayerImage;
     private void Start()
     {
         

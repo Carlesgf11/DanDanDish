@@ -32,6 +32,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.EventSystemSpawner
     - Photon.Pun.UtilityScripts.OnStartDelete
@@ -181,9 +183,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 6216}
+      Script: {instanceID: 6218}
     - Class: 114
-      Script: {instanceID: 6372}
+      Script: {instanceID: 6374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -278,9 +280,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 6216}
+      Script: {instanceID: 6218}
     - Class: 114
-      Script: {instanceID: 6372}
+      Script: {instanceID: 6374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -407,11 +409,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5914}
     - Class: 114
-      Script: {instanceID: 6106}
+      Script: {instanceID: 5922}
     - Class: 114
-      Script: {instanceID: 6330}
+      Script: {instanceID: 6108}
     - Class: 114
-      Script: {instanceID: 37844}
+      Script: {instanceID: 6332}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -548,11 +550,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5914}
     - Class: 114
-      Script: {instanceID: 6106}
+      Script: {instanceID: 6108}
     - Class: 114
-      Script: {instanceID: 6330}
+      Script: {instanceID: 6332}
     - Class: 114
-      Script: {instanceID: 6376}
+      Script: {instanceID: 6378}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -679,9 +681,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5730}
     - Class: 114
-      Script: {instanceID: 5924}
+      Script: {instanceID: 5926}
     - Class: 114
-      Script: {instanceID: 6372}
+      Script: {instanceID: 6374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -782,11 +784,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5688}
     - Class: 114
-      Script: {instanceID: 6106}
+      Script: {instanceID: 6108}
     - Class: 114
-      Script: {instanceID: 6330}
+      Script: {instanceID: 6332}
     - Class: 114
-      Script: {instanceID: 27922}
+      Script: {instanceID: 25876}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2299,6 +2301,12 @@ ScriptsOnlyBuild:
     className: StringInputField
   - hash:
       serializedVersion: 2
+      Hash: ed59fc8c5e1835918d3e9fb4ad4b1a2d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerItem
+  - hash:
+      serializedVersion: 2
       Hash: 47cb13937d80a450aefeced75a0d46a3
     assemblyName: PhotonUnityNetworking.dll
     namespaceName: Photon.Pun
@@ -2453,12 +2461,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: AmbientOcclusion
-  - hash:
-      serializedVersion: 2
-      Hash: 280ca58203ee50cb28ded0042304a952
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerItem
   platform: 19
   scenePathNames:
   - Assets/Scenes/Loading.unity
@@ -2470,4 +2472,4 @@ ScriptsOnlyBuild:
     for 1.unity
   - Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
     for 2.unity
-  playerPath: C:/Users/Albert/Desktop/Build/DanDanDishProject.exe
+  playerPath: D:/GitHub/DanDanDish/Build/DanDanDishProject.exe

@@ -13,6 +13,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public Text roomName;
     public InputField roomInputField;
 
+
     public RoomItem roomItemPrefab;
     List<RoomItem> roomItemList = new List<RoomItem>();
     public Transform contentObject;
@@ -23,6 +24,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public List<PlayerItem> playerItemsList = new List<PlayerItem>();
     public PlayerItem playerItemPrefab;
     public Transform playerItemParent;
+    private PlayerItem MyPlayer;
 
     private void Awake()
     {
@@ -32,6 +34,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.JoinLobby();
+    }
+
+    private void Update()
+    {
+
     }
 
     public void OnClickCreate()
@@ -112,6 +119,25 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 newPlayerItem.ApplyLocalChanges();
             }
             playerItemsList.Add(newPlayerItem);
+            ChangeOrder();
+        }
+    }
+    public void ChangeOrder()
+    {
+        if (playerItemsList[0].player.IsMasterClient == false)
+        {
+            playerItemsList[0].name = playerItemsList[0].player.ActorNumber.ToString();
+            playerItemsList[0].transform.SetAsLastSibling();
+            playerItemsList[0].PlayerImage.transform.localScale = new Vector3(-1,1,1);
+        }
+        else
+        {
+            if (playerItemsList[1] != null)
+            {
+                playerItemsList[1].name = playerItemsList[0].player.ActorNumber.ToString();
+                playerItemsList[1].transform.SetAsLastSibling();
+                playerItemsList[1].PlayerImage.transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)

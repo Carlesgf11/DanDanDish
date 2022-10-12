@@ -564,7 +564,7 @@ RectTransform:
   - {fileID: 1788223924093115518}
   - {fileID: 1788223924591772841}
   m_Father: {fileID: 1788223924807074575}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -639,8 +639,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1788223924791317063}
   - {fileID: 7919168095772906756}
+  - {fileID: 1788223924791317063}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -692,6 +692,7 @@ MonoBehaviour:
   btns: {fileID: 5599127702163742784}
   playerAvatar: {fileID: 1788223924591772845}
   playerFlagAnimator: {fileID: 1788223924093115517}
+  PlayerImage: {fileID: 1788223924791317060}
 --- !u!222 &6413633730214403751
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -715,7 +716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7919168095772906756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -730,7 +731,7 @@ RectTransform:
   - {fileID: 1788223924517746423}
   - {fileID: 1788223923566597041}
   m_Father: {fileID: 1788223924807074575}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
