@@ -132,11 +132,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            if (playerItemsList[1] != null)
+            if (playerItemsList.Count > 1)
             {
-                playerItemsList[1].name = playerItemsList[0].player.ActorNumber.ToString();
-                playerItemsList[1].transform.SetAsLastSibling();
-                playerItemsList[1].PlayerImage.transform.localScale = new Vector3(-1, 1, 1);
+                if (playerItemsList[1] != null)
+                {
+                    playerItemsList[1].name = playerItemsList[0].player.ActorNumber.ToString();
+                    playerItemsList[1].transform.SetAsLastSibling();
+                    playerItemsList[1].PlayerImage.transform.localScale = new Vector3(-1, 1, 1);
+                }
+
             }
         }
     }
