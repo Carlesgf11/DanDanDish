@@ -26,6 +26,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public Transform playerItemParent;
     private PlayerItem MyPlayer;
 
+    public GameObject btnPlay;
+
     private void Awake()
     {
         lobbyPanel.SetActive(true);
@@ -34,11 +36,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.JoinLobby();
+        btnPlay.SetActive(false);
     }
 
     private void Update()
     {
-
+        if (playerItemsList.Count == 2)
+            if(PhotonNetwork.IsMasterClient)
+                btnPlay.SetActive(true);
     }
 
     public void OnClickCreate()
@@ -122,6 +127,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             ChangeOrder();
         }
     }
+
     public void ChangeOrder()
     {
         if (playerItemsList[0].player.IsMasterClient == false)
@@ -140,18 +146,23 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                     playerItemsList[1].transform.SetAsLastSibling();
                     playerItemsList[1].PlayerImage.transform.localScale = new Vector3(-1, 1, 1);
                 }
-
             }
         }
     }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayerList(); 
     }
+
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         UpdatePlayerList();
     }
 
+    public void OnClickPlayBtn()
+    {
+        PhotonNetwork.LoadLevel("Game");
+    }
 }
 

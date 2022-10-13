@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 216135579}
   - component: {fileID: 216135578}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,31 +498,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 216135579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
-        m_MethodName: ToGameScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CharSelectionManager, Assembly-CSharp
-        m_MethodName: ToGameScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &216135579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,6 +1595,7 @@ MonoBehaviour:
   playerItemsList: []
   playerItemPrefab: {fileID: 7027775658862029842, guid: d379b345663dd4f42930919ecdef8ba2, type: 3}
   playerItemParent: {fileID: 330559858}
+  btnPlay: {fileID: 216135576}
 --- !u!4 &975438079
 Transform:
   m_ObjectHideFlags: 0
