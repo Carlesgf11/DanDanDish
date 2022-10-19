@@ -2,10 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
+    ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
+    public Player player;
+
     //Prueba Commit
     public enum PlayerState { CHOOSE, ACTION, ANIMS ,MOVE, DIE };
     public PlayerState state;
@@ -21,11 +26,13 @@ public class PlayerControl : MonoBehaviour
     public float fieldOfImpact, force;
     public LayerMask layerToHit;
 
+    public GameObject actionsBtns;
+
     public GameObject arrowImage;
     public GameObject playerGrid;
 
     public Animator anim;
-    public Animator animOK;
+    //public Animator animOK;
 
     [Header("CargarInfoPlayer")]
     public List<ScriptableCharacters> characters;
@@ -39,31 +46,64 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
-        //anim = GetComponentInChildren<Animator>();
+        AutoLeave();
         CurrentAction = 0;
         currentCheckpoint = 5;
         ChargePlayersInfo();
     }
 
+    public void AutoLeave()
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount <= 1)
+        {
+            PhotonNetwork.LoadLevel("CharacterSelection");
+        }
+    }
+
+    public void SetPlayerInfo(Player _player)
+    {
+        //playerName.text = _player.NickName;
+        player = _player;
+        UpdatePlayerItem(player);
+    }
+
+    public void ApplyLocalChanges()
+    {
+        actionsBtns.SetActive(true);
+    }
+
+    void UpdatePlayerItem(Player player)
+    {
+        
+    }
+
     public void ChargePlayersInfo()
     {
+        #region Cargar avatar correcto
+        //int getAvatar1 = PlayerPrefs.GetInt("Avatar1");
+        //int getAvatar2 = PlayerPrefs.GetInt("Avatar2");
+        //
+        //if (PhotonNetwork.IsMasterClient == true)
+        //    selectedChar = getAvatar1;
+        //else if (PhotonNetwork.IsMasterClient == false)
+        //    selectedChar = getAvatar2;
+        #endregion
+
         //Cargar informacion de los players
+        manager = FindObjectOfType<GameManager>();
         characters = manager.characters;
+        ps = characters[selectedChar].bodyParts; //[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]]
+
+        GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
+        anim = renderChar.GetComponent<Animator>();
 
         if (IsPlayer1)
             selectedChar = manager.Player1Char;
         else
             selectedChar = manager.Player2Char;
 
-        ps = characters[selectedChar].bodyParts;
-        //anim = characters[selectedChar].anim;
-
-        GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
-
-        if(!IsPlayer1)
+        if (!IsPlayer1)
             renderChar.GetComponent<SpriteRenderer>().flipX = true;
-
-        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -92,7 +132,6 @@ public class PlayerControl : MonoBehaviour
         manager.TimelineIsDone = true;
         if (CurrentAction == 1)
         {
-
             ammo++;
             GameObject newArrow = Instantiate(arrowImage, playerGrid.transform.position, Quaternion.identity);
             newArrow.transform.parent = playerGrid.transform;
@@ -112,16 +151,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-        public void AnimsUpdate()
+    public void AnimsUpdate()
     {
         if (CurrentAction == 1)
         {
-
             anim.SetTrigger("Recharge");
         }
         if (CurrentAction == 2)
         {
-
             anim.SetTrigger("Shoot");
             if (IsPlayer1)
                 ShootArrow(Vector3.right, Quaternion.identity);
@@ -130,7 +167,6 @@ public class PlayerControl : MonoBehaviour
         }
         if (CurrentAction == 3)
         {
-
             anim.SetTrigger("Defend");
         }
     }
@@ -172,14 +208,10 @@ public class PlayerControl : MonoBehaviour
 
     public void ButtonChoose(int _action)
     {
-
-        if (IsPlayer1)
-        {
-            if (_action == 2 && ammo >= 1)
-                CurrentAction = _action;
-            if (_action != 2)
-                CurrentAction = _action;
-        }
+        if (_action == 2 && ammo >= 1)
+            CurrentAction = _action;
+        if (_action != 2)
+            CurrentAction = _action;
     }
 
     public void MoveUpdate()

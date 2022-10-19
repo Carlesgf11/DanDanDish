@@ -23,7 +23,6 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public GameObject PlayerImage;
     private void Start()
     {
-        
         backgroundImage = GetComponent<Image>();  
     }
     public void SetPlayerInfo(Player _player)
@@ -32,6 +31,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         player = _player;
         UpdatePlayerItem(player);
     }
+
     public void ApplyLocalChanges()
     {
         //backgroundImage.color = highlightColor;
@@ -61,6 +61,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
     }
+
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         if(player == targetPlayer)
@@ -75,7 +76,6 @@ public class PlayerItem : MonoBehaviourPunCallbacks
             playerAvatar.sprite = avatars[(int)player.CustomProperties["playerAvatar"]].charImage;
             playerFlagAnimator.runtimeAnimatorController = avatars[(int)player.CustomProperties["playerAvatar"]].flagAnim;
             playerProperties["playerAvatar"] = (int)player.CustomProperties["playerAvatar"];
-            
         }
         else
         {

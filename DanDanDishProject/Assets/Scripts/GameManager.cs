@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Photon.Pun;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     bool TimelineOutDone = false;
     public float countDown;
     public Transform cameraTarget;
+
+    public Transform[] playersInstSpots;
     public GameObject player1, player2;
 
     public Text countDownText;
@@ -29,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Pause")]
     public GameObject pausePanel;
+    public bool pause;
     public GameObject pauseContentPanel;
     public GameObject optionsPanel;
 
@@ -39,6 +43,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        SetGame();
+    }
+
+    private void SetGame()
+    {
+        pause = false;
+        player1 = playersInstSpots[0].transform.GetChild(0).transform.GetChild(0).gameObject;
+        player2 = playersInstSpots[1].transform.GetChild(0).transform.GetChild(0).gameObject;
+
         countDown = 4;
         pauseContentPanel.SetActive(true);
         winnerPanel.SetActive(false);
@@ -89,11 +102,9 @@ public class GameManager : MonoBehaviour
 
     void ChooseUpdate()
     {
-
         countDown -= Time.deltaTime;
         countDownText.text = ((int)countDown).ToString();
         ButtonsAnim.SetBool("Appear", true);
-
 
         if (countDown < 1)
         {
@@ -101,8 +112,6 @@ public class GameManager : MonoBehaviour
             countDown = 0;
             state = GameState.ACTION;
         }
-
-        
     }
 
     void ActionUpdate()
@@ -114,7 +123,6 @@ public class GameManager : MonoBehaviour
         {
             countDown = 4;
             Invoke("ReturnToChoose", 1f);
-
         }
         else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
         {
@@ -127,17 +135,13 @@ public class GameManager : MonoBehaviour
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
             countDown = 4;
-
             Invoke("ReturnToChoose", 1f);
-
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
             countDown = 4;
-
             Invoke("ReturnToChoose", 1f);
         }
-
     }
 
 
@@ -154,7 +158,6 @@ public class GameManager : MonoBehaviour
     public void Player2Win()
     {
         player2.GetComponent<PlayerControl>().currentCheckpoint++;
-
         player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
@@ -169,7 +172,6 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<PlayerControl>().CurrentAction = 0;
         player2.GetComponent<PlayerControl>().CurrentAction = 0;
         state = GameState.CHOOSE;
-
     }
 
     public void FinishGame(GameObject _winner)
@@ -191,11 +193,13 @@ public class GameManager : MonoBehaviour
         if(_pause)
         {
             Time.timeScale = 0;
+            pause = true;
             pausePanel.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
+            pause = false;
             pausePanel.SetActive(false);
         }
     }

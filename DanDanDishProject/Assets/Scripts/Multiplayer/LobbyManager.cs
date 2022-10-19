@@ -41,9 +41,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (playerItemsList.Count == 2)
-            if(PhotonNetwork.IsMasterClient)
-                btnPlay.SetActive(true);
+        
     }
 
     public void OnClickCreate()
@@ -84,7 +82,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             newRoom.SetRoomName(room.Name);
             roomItemList.Add(newRoom);
         }
-
     }
 
     public void JoinRoom(string roomName)
@@ -96,6 +93,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
     }
+
     public override void OnLeftRoom()
     {
         roomPanel.SetActive(false);
@@ -126,6 +124,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             playerItemsList.Add(newPlayerItem);
             ChangeOrder();
         }
+
+        if (playerItemsList.Count == 2)
+            if (PhotonNetwork.IsMasterClient)
+                btnPlay.SetActive(true);
     }
 
     public void ChangeOrder()
@@ -154,7 +156,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         UpdatePlayerList(); 
     }
-
+    
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         UpdatePlayerList();
