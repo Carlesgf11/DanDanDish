@@ -76,6 +76,16 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayerList();
@@ -86,13 +96,4 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
         UpdatePlayerList();
     }
 
-    public void AutoLeaveRoom()
-    {
-        
-    }
-
-    public void ChangeMaster()
-    {
-        //spawnPoints[0].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>().player.IsMasterClient == false 
-    }
 }

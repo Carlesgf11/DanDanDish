@@ -98,8 +98,6 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    UnityEditor.UI.dll:
-    - UnityEditor.UI.CanvasScalerEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -819,7 +817,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6334}
     - Class: 114
-      Script: {instanceID: 30364}
+      Script: {instanceID: 28312}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128

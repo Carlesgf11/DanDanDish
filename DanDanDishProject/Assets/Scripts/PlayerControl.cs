@@ -56,6 +56,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount <= 1)
         {
+            PhotonNetwork.LeaveRoom();
             PhotonNetwork.LoadLevel("CharacterSelection");
         }
     }
@@ -69,7 +70,7 @@ public class PlayerControl : MonoBehaviour
 
     public void ApplyLocalChanges()
     {
-        actionsBtns.SetActive(true);
+        //actionsBtns.SetActive(true);
     }
 
     void UpdatePlayerItem(Player player)
