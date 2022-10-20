@@ -10,7 +10,8 @@ public class PlayerControl : MonoBehaviour
 {
     ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
     public Player player;
-
+    public Animator ButtonsAnim;
+    public List<GameObject> flagsImages;
     //Prueba Commit
     public enum PlayerState { CHOOSE, ACTION, ANIMS ,MOVE, DIE };
     public PlayerState state;
@@ -56,8 +57,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount <= 1)
         {
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LoadLevel("CharacterSelection");
+            FindObjectOfType<SpawnPlayers>().OnClickLeaveRoom();    
         }
     }
 
@@ -71,40 +71,30 @@ public class PlayerControl : MonoBehaviour
     public void ApplyLocalChanges()
     {
         //actionsBtns.SetActive(true);
+        ButtonsAnim.gameObject.SetActive(true);
+
     }
 
     void UpdatePlayerItem(Player player)
     {
-        
+
     }
 
     public void ChargePlayersInfo()
     {
-        #region Cargar avatar correcto
-        //int getAvatar1 = PlayerPrefs.GetInt("Avatar1");
-        //int getAvatar2 = PlayerPrefs.GetInt("Avatar2");
-        //
-        //if (PhotonNetwork.IsMasterClient == true)
-        //    selectedChar = getAvatar1;
-        //else if (PhotonNetwork.IsMasterClient == false)
-        //    selectedChar = getAvatar2;
-        #endregion
-
         //Cargar informacion de los players
         manager = FindObjectOfType<GameManager>();
+        cameraTarget = manager.cameraTarget;
+        selectedChar = (int)player.CustomProperties["playerAvatar"];
         characters = manager.characters;
-        ps = characters[selectedChar].bodyParts; //[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]]
-
+        ps = characters[(int)player.CustomProperties["playerAvatar"]].bodyParts;
         GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
         anim = renderChar.GetComponent<Animator>();
-
-        if (IsPlayer1)
-            selectedChar = manager.Player1Char;
-        else
-            selectedChar = manager.Player2Char;
-
-        if (!IsPlayer1)
-            renderChar.GetComponent<SpriteRenderer>().flipX = true;
+        for (int i = 0; i < flagsImages.Count; i++)
+        {
+            flagsImages[i].GetComponent<Image>().sprite = characters[(int)player.CustomProperties["playerAvatar"]].flagSprite;
+            flagsImages[i].transform.GetChild(0).GetComponent<Image>().color = characters[(int)player.CustomProperties["playerAvatar"]].UIColor;
+        }
     }
 
     private void Update()
@@ -185,6 +175,7 @@ public class PlayerControl : MonoBehaviour
 
     private void ChooseUpdate()
     {
+        ButtonsAnim.SetBool("Appear", true);
         canSpawnArrow = true;
         if (manager.state == GameManager.GameState.CHOOSE || manager.state == GameManager.GameState.RELOCATE)
         {
@@ -217,7 +208,7 @@ public class PlayerControl : MonoBehaviour
 
     public void MoveUpdate()
     {
-
+        ButtonsAnim.SetBool("Appear", false);
         Vector2 finalPos = new Vector2(checkPoints[currentCheckpoint].position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, finalPos, 10 * Time.deltaTime);
         float distance = Vector2.Distance(finalPos, transform.position);
@@ -247,8 +238,7 @@ public class PlayerControl : MonoBehaviour
 
     }
     public void GoMove()
-    {
-
+   {
         anim.SetTrigger("Run");
         CurrentAction = 0;
         state = PlayerState.MOVE;
@@ -321,4 +311,5 @@ public class PlayerControl : MonoBehaviour
         Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, 0.2f);
 
     }
+
 }

@@ -87,13 +87,11 @@ ScriptsOnlyBuild:
     Unity.Timeline.Editor.dll:
     - TimelinePreferences
     - UnityEditor.Timeline.SequenceHierarchy
-    - UnityEditor.Timeline.TimelineWindow
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -603,6 +601,53 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1546}
+    - Class: 114
+      Script: {instanceID: 1548}
+    - Class: 114
+      Script: {instanceID: 2918}
+    - Class: 114
+      Script: {instanceID: 3094}
+    - Class: 114
+      Script: {instanceID: 3334}
+    - Class: 114
+      Script: {instanceID: 3620}
+    - Class: 114
+      Script: {instanceID: 5664}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Menu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
     - Class: 23
       Script: {instanceID: 0}
     - Class: 28
@@ -623,9 +668,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 72
+      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -640,6 +691,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1548}
     - Class: 114
+      Script: {instanceID: 1636}
+    - Class: 114
       Script: {instanceID: 1680}
     - Class: 114
       Script: {instanceID: 1854}
@@ -652,6 +705,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1982}
     - Class: 114
+      Script: {instanceID: 2010}
+    - Class: 114
       Script: {instanceID: 2020}
     - Class: 114
       Script: {instanceID: 2418}
@@ -660,15 +715,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2634}
     - Class: 114
+      Script: {instanceID: 2736}
+    - Class: 114
       Script: {instanceID: 2918}
     - Class: 114
       Script: {instanceID: 3086}
     - Class: 114
       Script: {instanceID: 3094}
     - Class: 114
+      Script: {instanceID: 3308}
+    - Class: 114
       Script: {instanceID: 3334}
     - Class: 114
       Script: {instanceID: 3354}
+    - Class: 114
+      Script: {instanceID: 3398}
     - Class: 114
       Script: {instanceID: 3534}
     - Class: 114
@@ -684,6 +745,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4182}
     - Class: 114
+      Script: {instanceID: 4254}
+    - Class: 114
+      Script: {instanceID: 4382}
+    - Class: 114
       Script: {instanceID: 4388}
     - Class: 114
       Script: {instanceID: 4762}
@@ -694,11 +759,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5084}
     - Class: 114
+      Script: {instanceID: 5086}
+    - Class: 114
       Script: {instanceID: 5154}
+    - Class: 114
+      Script: {instanceID: 5276}
     - Class: 114
       Script: {instanceID: 5304}
     - Class: 114
-      Script: {instanceID: 5664}
+      Script: {instanceID: 5596}
+    - Class: 114
+      Script: {instanceID: 5690}
     - Class: 114
       Script: {instanceID: 5730}
     - Class: 114
@@ -708,7 +779,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5928}
     - Class: 114
+      Script: {instanceID: 6110}
+    - Class: 114
+      Script: {instanceID: 6334}
+    - Class: 114
       Script: {instanceID: 6376}
+    - Class: 114
+      Script: {instanceID: 18600}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -741,104 +818,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 225
       Script: {instanceID: 0}
-    - Class: 320
-      Script: {instanceID: 0}
-    - Class: 331
-      Script: {instanceID: 0}
-    Assets/Scenes/Menu.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 72
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
-    - Class: 83
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1546}
-    - Class: 114
-      Script: {instanceID: 1548}
-    - Class: 114
-      Script: {instanceID: 1636}
-    - Class: 114
-      Script: {instanceID: 1854}
-    - Class: 114
-      Script: {instanceID: 1868}
-    - Class: 114
-      Script: {instanceID: 1896}
-    - Class: 114
-      Script: {instanceID: 2010}
-    - Class: 114
-      Script: {instanceID: 2736}
-    - Class: 114
-      Script: {instanceID: 2918}
-    - Class: 114
-      Script: {instanceID: 3094}
-    - Class: 114
-      Script: {instanceID: 3308}
-    - Class: 114
-      Script: {instanceID: 3334}
-    - Class: 114
-      Script: {instanceID: 3398}
-    - Class: 114
-      Script: {instanceID: 3620}
-    - Class: 114
-      Script: {instanceID: 3750}
-    - Class: 114
-      Script: {instanceID: 4182}
-    - Class: 114
-      Script: {instanceID: 4254}
-    - Class: 114
-      Script: {instanceID: 4382}
-    - Class: 114
-      Script: {instanceID: 5086}
-    - Class: 114
-      Script: {instanceID: 5276}
-    - Class: 114
-      Script: {instanceID: 5596}
-    - Class: 114
-      Script: {instanceID: 5690}
-    - Class: 114
-      Script: {instanceID: 6110}
-    - Class: 114
-      Script: {instanceID: 6334}
-    - Class: 114
-      Script: {instanceID: 28312}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
     - Class: 241
       Script: {instanceID: 0}
     - Class: 243
       Script: {instanceID: 0}
     - Class: 245
+      Script: {instanceID: 0}
+    - Class: 320
+      Script: {instanceID: 0}
+    - Class: 331
       Script: {instanceID: 0}
     Assets/Scenes/SampleScene.unity:
     - Class: 1
@@ -1436,7 +1424,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: a317aca95eeab70cb25504a074de6e41
+      Hash: 198ccdea94bf9afb57abb4d4a7a517e1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerControl
@@ -2498,8 +2486,8 @@ ScriptsOnlyBuild:
     className: AmbientOcclusion
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Loading.unity
   - Assets/Scenes/Menu.unity
+  - Assets/Scenes/Loading.unity
   - Assets/Scenes/CharacterSelection.unity
   - Assets/Scenes/Game.unity
   - Assets/Scenes/SampleScene.unity
@@ -2507,4 +2495,4 @@ ScriptsOnlyBuild:
     for 1.unity
   - Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
     for 2.unity
-  playerPath: C:/Users/gonza/Documents/GitHub/DanDanDishCosa/Blds/DanDanDishProject.exe
+  playerPath: D:/GitHub/DanDanDish/Build/DanDanDishProject.exe

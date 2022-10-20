@@ -1602,7 +1602,7 @@ MonoBehaviour:
   roomInputField: {fileID: 1317735859}
   roomItemPrefab: {fileID: 104259637000997587, guid: 35e2b7b2c5d341d40826c3e216c7f931, type: 3}
   contentObject: {fileID: 1589426684}
-  timeBetweenUpdates: 1.5
+  timeBetweenUpdates: 0.5
   nextUpdateTime: 0
   playerItemsList: []
   playerItemPrefab: {fileID: 7027775658862029842, guid: d379b345663dd4f42930919ecdef8ba2, type: 3}

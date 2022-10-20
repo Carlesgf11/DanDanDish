@@ -37,7 +37,6 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
             GameObject newPlayer = Instantiate(playerPrefab, spawnPoints[tempPos]);
 
             newPlayer.gameObject.name = newPlayer.gameObject.name + tempPos.ToString();
-            newPlayer.transform.GetChild(2).transform.GetChild(2).GetComponent<Text>().text = newPlayer.gameObject.name;
 
             PlayerControl newPlayerControl = newPlayer.transform.GetChild(0).GetComponent<PlayerControl>();
 
@@ -74,11 +73,14 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
     public void OnClickLeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+
     }
 
     public override void OnLeftRoom()
     {
-        PhotonNetwork.CurrentRoom.IsOpen = false;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Loading");
+        base.OnLeftRoom();
+        //PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 
     public override void OnConnectedToMaster()
