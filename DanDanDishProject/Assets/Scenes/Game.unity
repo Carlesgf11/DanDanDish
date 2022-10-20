@@ -11278,6 +11278,7 @@ GameObject:
   - component: {fileID: 1394598960}
   - component: {fileID: 1394598959}
   - component: {fileID: 1394598961}
+  - component: {fileID: 1394598962}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11552,6 +11553,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1394598962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394598956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 4
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1405022585
 GameObject:
   m_ObjectHideFlags: 0
@@ -17021,6 +17044,7 @@ GameObject:
   - component: {fileID: 1937025372}
   - component: {fileID: 1937025371}
   - component: {fileID: 1937025373}
+  - component: {fileID: 1937025374}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -17104,6 +17128,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &1937025374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937025369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1942847456
 GameObject:
   m_ObjectHideFlags: 0
@@ -17179,6 +17225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8461f74f99d5844fb7544b889c14acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonsAnim: {fileID: 0}
+  flagsImages: []
   state: 0
   manager: {fileID: 1394598957}
   checkPoints:
@@ -17208,6 +17256,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   actionsBtns: {fileID: 0}
+  opponent: {fileID: 0}
   arrowImage: {fileID: 8171871671566972578, guid: f899bf2b466f6bf41bba24c16e179505, type: 3}
   playerGrid: {fileID: 94809350}
   anim: {fileID: 0}
@@ -17216,6 +17265,7 @@ MonoBehaviour:
   arrowPref: {fileID: 7520610529522563627, guid: 1c739ea6548cf1b4ab394b79d768c490, type: 3}
   arrowSpawnPos: {fileID: 1727666559}
   arrowControl: {fileID: 0}
+  SpriteJugador: {fileID: 0}
 --- !u!114 &1942847460
 MonoBehaviour:
   m_ObjectHideFlags: 0

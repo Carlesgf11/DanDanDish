@@ -47,6 +47,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public Transform arrowSpawnPos;
     public ArrowControl arrowControl;
     private bool canSpawnArrow;
+    public GameObject SpriteJugador;
 
     private void Start()
     {
@@ -106,6 +107,10 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         ps = characters[(int)player.CustomProperties["playerAvatar"]].bodyParts;
         GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
         anim = renderChar.GetComponent<Animator>();
+       //if (player.IsMasterClient == false)
+       //{
+       //    renderChar.transform.localScale = new Vector3(-1, 1, 1);
+       //}
         for (int i = 0; i < flagsImages.Count; i++)
         {
             flagsImages[i].GetComponent<Image>().sprite = characters[(int)player.CustomProperties["playerAvatar"]].flagSprite;
@@ -191,10 +196,11 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 
     private void ChooseUpdate()
     {
-        ButtonsAnim.SetBool("Appear", true);
         canSpawnArrow = true;
         if (manager.state == GameManager.GameState.CHOOSE || manager.state == GameManager.GameState.RELOCATE)
         {
+            ButtonsAnim.SetBool("Appear", true);
+
             if (IsPlayer1)
             {
                 if (Input.GetKeyDown(KeyCode.A)) CurrentAction = 1;
@@ -210,6 +216,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         }
         else
         {
+            ButtonsAnim.SetBool("Appear", false);
             state = PlayerState.ACTION;
         }
     }
