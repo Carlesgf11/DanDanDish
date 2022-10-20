@@ -35,7 +35,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
-
         PhotonNetwork.JoinLobby();
         btnPlay.SetActive(false);
     }
@@ -130,6 +129,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             {
                 newPlayerItem.ApplyLocalChanges();
             }
+            newPlayerItem.OnClickLeftArrow();
             playerItemsList.Add(newPlayerItem);
             ChangeOrder();
         }

@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviourPunCallbacks
 {
     ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
     public Player player;
@@ -28,6 +28,9 @@ public class PlayerControl : MonoBehaviour
     public LayerMask layerToHit;
 
     public GameObject actionsBtns;
+
+    public PlayerControl opponent;
+    private Transform[] playersInstSpots;
 
     public GameObject arrowImage;
     public GameObject playerGrid;
@@ -51,6 +54,16 @@ public class PlayerControl : MonoBehaviour
         CurrentAction = 0;
         currentCheckpoint = 5;
         ChargePlayersInfo();
+        FindOpponent();
+    }
+
+    public void FindOpponent()
+    {
+        playersInstSpots = manager.playersInstSpots;
+        if (transform.parent.transform.parent == playersInstSpots[0])
+            opponent = playersInstSpots[1].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
+        else if (transform.parent.transform.parent == playersInstSpots[1])
+            opponent = playersInstSpots[0].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
     }
 
     public void AutoLeave()
@@ -72,12 +85,15 @@ public class PlayerControl : MonoBehaviour
     {
         //actionsBtns.SetActive(true);
         ButtonsAnim.gameObject.SetActive(true);
-
     }
 
     void UpdatePlayerItem(Player player)
     {
-
+        if (player.CustomProperties.ContainsKey("CurrentAction"))
+        {
+            print("CurrentAction");
+            CurrentAction = (int)player.CustomProperties["CurrentAction"];
+        }
     }
 
     public void ChargePlayersInfo()
@@ -201,9 +217,25 @@ public class PlayerControl : MonoBehaviour
     public void ButtonChoose(int _action)
     {
         if (_action == 2 && ammo >= 1)
-            CurrentAction = _action;
+        {
+            //CurrentAction = _action;
+            playerProperties["CurrentAction"] = _action;
+        }
         if (_action != 2)
-            CurrentAction = _action;
+        {
+            //CurrentAction = _action;
+            playerProperties["CurrentAction"] = _action;
+        }
+        PhotonNetwork.SetPlayerCustomProperties(playerProperties);
+        //playerProperties["CurrentAction"] = _action;
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if (player == targetPlayer)
+        {
+            UpdatePlayerItem(targetPlayer);
+        }
     }
 
     public void MoveUpdate()
@@ -214,7 +246,6 @@ public class PlayerControl : MonoBehaviour
         float distance = Vector2.Distance(finalPos, transform.position);
         if (distance <= 0.02f)
         {
-
             if (currentCheckpoint >= 11 )
             {
                 manager.FinishGame(gameObject);
@@ -235,14 +266,15 @@ public class PlayerControl : MonoBehaviour
         cameraTarget.transform.localPosition = new Vector3(cameraX, 3, -10);
         anim.SetTrigger("Run");
         Invoke("GoMove", 1f);
-
     }
+
     public void GoMove()
-   {
+    {
         anim.SetTrigger("Run");
         CurrentAction = 0;
         state = PlayerState.MOVE;
     }
+
     public void Empate()
     {
         anim.SetTrigger("Idle");
@@ -262,7 +294,6 @@ public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
-
         Vector2 pos = new Vector2(transform.position.x, (transform.position.y - (UnityEngine.Random.Range(0f, 1f))));
         Instantiate(blood, pos, Quaternion.identity);
         Instantiate(ps, transform.position, ps.transform.rotation);

@@ -23,7 +23,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public GameObject PlayerImage;
     private void Start()
     {
-        backgroundImage = GetComponent<Image>();  
+        backgroundImage = GetComponent<Image>();
     }
     public void SetPlayerInfo(Player _player)
     {
@@ -73,6 +73,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     {
         if(player.CustomProperties.ContainsKey("playerAvatar"))
         {
+            print("playerAvatar");
             playerAvatar.sprite = avatars[(int)player.CustomProperties["playerAvatar"]].charImage;
             playerFlagAnimator.runtimeAnimatorController = avatars[(int)player.CustomProperties["playerAvatar"]].flagAnim;
             playerProperties["playerAvatar"] = (int)player.CustomProperties["playerAvatar"];

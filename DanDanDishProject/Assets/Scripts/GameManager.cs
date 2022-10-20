@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviour
                 RelocateUpdate();
                 break;
             case GameState.GAMEFINISHED:
-                //winnerText.text = 
                 break;
         }
     }
