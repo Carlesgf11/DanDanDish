@@ -224,13 +224,10 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public void ButtonChoose(int _action)
     {
         if (_action == 2 && ammo >= 1)
-        {
-            //CurrentAction = _action;
             playerProperties["CurrentAction"] = _action;
-        }
+
         if (_action != 2)
         {
-            //CurrentAction = _action;
             playerProperties["CurrentAction"] = _action;
         }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
