@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerControl : MonoBehaviourPunCallbacks
 {
     ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
+    PhotonView view;
     public Player player;
     public Animator ButtonsAnim;
     public List<GameObject> flagsImages;
@@ -51,6 +52,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        view = GetComponent<PhotonView>();
         AutoLeave();
         CurrentAction = 0;
         currentCheckpoint = 5;
@@ -199,7 +201,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         canSpawnArrow = true;
         if (manager.state == GameManager.GameState.CHOOSE || manager.state == GameManager.GameState.RELOCATE)
         {
-            ButtonsAnim.SetBool("Appear", true);
+            //ButtonsAnim.SetBool("Appear", true);
 
             if (IsPlayer1)
             {
@@ -216,7 +218,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         }
         else
         {
-            ButtonsAnim.SetBool("Appear", false);
+            //ButtonsAnim.SetBool("Appear", false);
             state = PlayerState.ACTION;
         }
     }
@@ -227,6 +229,10 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         {
             //CurrentAction = _action;
             playerProperties["CurrentAction"] = _action;
+        }
+        else
+        {
+            playerProperties["CurrentAction"] = 0;
         }
         if (_action != 2)
         {
@@ -253,7 +259,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         float distance = Vector2.Distance(finalPos, transform.position);
         if (distance <= 0.02f)
         {
-            if (currentCheckpoint >= 11 )
+            if (currentCheckpoint >= 11)
             {
                 manager.FinishGame(gameObject);
                 return;
@@ -262,8 +268,11 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             anim.SetTrigger("Idle");
             manager.ReturnToChoose();
             state = PlayerState.CHOOSE;
+
+            // ManagerChoose();
         }
     }
+
 
     public void Win()
     {
