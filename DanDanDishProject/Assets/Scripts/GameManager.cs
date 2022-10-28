@@ -41,8 +41,12 @@ public class GameManager : MonoBehaviour
     public AudioSource arrowImpact;
     public AudioSource arrowImpact2;
 
+    PhotonView view;
+
+
     private void Start()
     {
+        view = GetComponent<PhotonView>();
         SetGame();
     }
 
@@ -103,11 +107,13 @@ public class GameManager : MonoBehaviour
     {
         countDown -= Time.deltaTime;
         countDownText.text = ((int)countDown).ToString();
-        ButtonsAnim.SetBool("Appear", true);
+        player1.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", true);
+        player2.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", true);
 
         if (countDown < 1)
         {
-            ButtonsAnim.SetBool("Appear", false);
+            player1.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);
+            player2.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);
             countDown = 0;
             state = GameState.ACTION;
         }
