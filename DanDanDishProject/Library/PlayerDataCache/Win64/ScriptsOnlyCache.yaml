@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - CharSelectionList
     - CharactersGameObjectList
     - ConnectToServer
+    - FPSLimiter
     - GameManager
     - HitStop
     - LobbyManager
@@ -625,8 +626,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
@@ -779,7 +778,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6376}
     - Class: 114
-      Script: {instanceID: 26948}
+      Script: {instanceID: 24476}
+    - Class: 114
+      Script: {instanceID: 24500}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1082,7 +1083,7 @@ ScriptsOnlyBuild:
     className: DepthOfField
   - hash:
       serializedVersion: 2
-      Hash: 555005f2a9a09f187d7f17ce16d34c19
+      Hash: 2c01bde05c68214beaf03d44789f09e0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -2478,6 +2479,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: AmbientOcclusion
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FPSLimiter
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu.unity
@@ -2489,4 +2496,4 @@ ScriptsOnlyBuild:
     for 1.unity
   - Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
     for 2.unity
-  playerPath: D:/GitHub/DanDanDish/Build/DanDanDishProject.exe
+  playerPath: C:/Users/Albert/Desktop/Build/DanDanDishProject.exe

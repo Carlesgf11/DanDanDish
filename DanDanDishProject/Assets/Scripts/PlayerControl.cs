@@ -11,39 +11,38 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
     PhotonView view;
     public Player player;
-    public Animator ButtonsAnim;
-    public List<GameObject> flagsImages;
-    //Prueba Commit
-    public enum PlayerState { CHOOSE, ACTION, ANIMS ,MOVE, DIE };
-    public PlayerState state;
     public GameManager manager;
+    public enum PlayerState { CHOOSE, ACTION, ANIMS, MOVE, DIE };
+    public PlayerState state;
+
     public List<Transform> checkPoints;
-    public int currentCheckpoint;
     public bool IsPlayer1;
     public Transform cameraTarget;
+    public LayerMask layerToHit;
+    public PlayerControl opponent;
+    public GameObject playerGrid;
+    public Animator anim;
+
+    //BOTONES UI
+    public Animator ButtonsAnim;
+    public List<GameObject> flagsImages;
+    public GameObject actionsBtns;
+
+    //INTS
+    public int currentCheckpoint;
     public int cameraX;
     public int CurrentAction;//1Recargar/ 2Disparar/ 3Defender
     public int ammo;
     public GameObject ps, blood;
     public float fieldOfImpact, force;
-    public LayerMask layerToHit;
-
-    public GameObject actionsBtns;
-
-    public PlayerControl opponent;
     private Transform[] playersInstSpots;
-
-    public GameObject arrowImage;
-    public GameObject playerGrid;
-
-    public Animator anim;
-    //public Animator animOK;
 
     [Header("CargarInfoPlayer")]
     public List<ScriptableCharacters> characters;
     public int selectedChar;
 
     [Header("Arrow Render Shoot")]
+    public GameObject arrowImage;
     public GameObject arrowPref;
     public Transform arrowSpawnPos;
     public ArrowControl arrowControl;
@@ -109,10 +108,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         ps = characters[(int)player.CustomProperties["playerAvatar"]].bodyParts;
         GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
         anim = renderChar.GetComponent<Animator>();
-       //if (player.IsMasterClient == false)
-       //{
-       //    renderChar.transform.localScale = new Vector3(-1, 1, 1);
-       //}
+
         for (int i = 0; i < flagsImages.Count; i++)
         {
             flagsImages[i].GetComponent<Image>().sprite = characters[(int)player.CustomProperties["playerAvatar"]].flagSprite;
@@ -199,30 +195,12 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private void ChooseUpdate()
     {
         canSpawnArrow = true;
-        if (manager.state == GameManager.GameState.CHOOSE || manager.state == GameManager.GameState.RELOCATE)
+        if (manager.state != GameManager.GameState.CHOOSE || manager.state != GameManager.GameState.RELOCATE)
         {
-            //ButtonsAnim.SetBool("Appear", true);
-
-            if (IsPlayer1)
-            {
-                if (Input.GetKeyDown(KeyCode.A)) CurrentAction = 1;
-                if (Input.GetKeyDown(KeyCode.S) && ammo >= 1) CurrentAction = 2;
-                if (Input.GetKeyDown(KeyCode.D)) CurrentAction = 3;
-            }
-            if (!IsPlayer1)
-            {
-                if (Input.GetKeyDown(KeyCode.J)) CurrentAction = 1;
-                if (Input.GetKeyDown(KeyCode.K) && ammo >= 1) CurrentAction = 2;
-                if (Input.GetKeyDown(KeyCode.L)) CurrentAction = 3;
-            }
-        }
-        else
-        {
-            //ButtonsAnim.SetBool("Appear", false);
             state = PlayerState.ACTION;
         }
     }
-
+  
     public void ButtonChoose(int _action)
     {
         if (_action == 2 && ammo >= 1)
