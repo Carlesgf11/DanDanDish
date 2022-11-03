@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -871,7 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1441,13 +1441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8461f74f99d5844fb7544b889c14acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonsAnim: {fileID: 6397228562776938133}
-  flagsImages:
-  - {fileID: 6373796393375872083}
-  - {fileID: 6321214082067559768}
-  - {fileID: 5813502249871197709}
-  state: 0
   manager: {fileID: 0}
+  state: 0
   checkPoints:
   - {fileID: 8015144486799281626}
   - {fileID: 8015144486408048490}
@@ -1461,29 +1456,35 @@ MonoBehaviour:
   - {fileID: 8015144486018908814}
   - {fileID: 8015144486376564650}
   - {fileID: 8015144486335000514}
-  currentCheckpoint: 0
   IsPlayer1: 1
   cameraTarget: {fileID: 0}
+  layerToHit:
+    serializedVersion: 2
+    m_Bits: 128
+  opponent: {fileID: 0}
+  playerGrid: {fileID: 8015144486196828566}
+  anim: {fileID: 2844477962643736353}
+  ButtonsAnim: {fileID: 6397228562776938133}
+  flagsImages:
+  - {fileID: 6373796393375872083}
+  - {fileID: 6321214082067559768}
+  - {fileID: 5813502249871197709}
+  actionsBtns: {fileID: 1746005047745703567}
+  currentCheckpoint: 0
   cameraX: 2
   CurrentAction: 0
+  currentActionOpponent: 0
   ammo: 0
   ps: {fileID: 7174158112161191631, guid: 1ebb6b429e0863b44a3f6aa0bcc4ecac, type: 3}
   blood: {fileID: 693921038603737180, guid: 8fa4d9fa6e9e2e44c8ce21bef3b5babf, type: 3}
   fieldOfImpact: 2.1
   force: 10
-  layerToHit:
-    serializedVersion: 2
-    m_Bits: 128
-  actionsBtns: {fileID: 1746005047745703567}
-  opponent: {fileID: 0}
-  arrowImage: {fileID: 8171871671566972578, guid: f899bf2b466f6bf41bba24c16e179505, type: 3}
-  playerGrid: {fileID: 8015144486196828566}
-  anim: {fileID: 2844477962643736353}
   characters:
   - {fileID: 11400000, guid: 437981d38aede8a45b57097f9988a555, type: 2}
   - {fileID: 11400000, guid: c9c1fbca3852320459c3440cbb0a2303, type: 2}
   - {fileID: 11400000, guid: 7b08ee87374659143a18113f5dd69000, type: 2}
   selectedChar: 0
+  arrowImage: {fileID: 8171871671566972578, guid: f899bf2b466f6bf41bba24c16e179505, type: 3}
   arrowPref: {fileID: 7520610529522563627, guid: 1c739ea6548cf1b4ab394b79d768c490, type: 3}
   arrowSpawnPos: {fileID: 8015144486839084750}
   arrowControl: {fileID: 0}
@@ -2182,7 +2183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8015144486556624704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8015144486089292218}

@@ -73,7 +73,6 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
     public void OnClickLeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-
     }
 
     public override void OnLeftRoom()

@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     //Prueba Commit
     public Animator ButtonsAnim;
     public List<GameObject> flagsImages;
-    public enum GameState { CHOOSE, ACTION, RELOCATE, GAMEFINISHED };
+    public enum GameState { CHOOSE, DELAYTOACTION, ACTION, RELOCATE, GAMEFINISHED };
     public GameState state;
     public bool TimelineIsDone = false;
     bool TimelineOutDone = false;
-    public float countDown;
+    public float countDown, delayTimer;
     public Transform cameraTarget;
 
     public Transform[] playersInstSpots;
@@ -74,9 +74,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            Player1Win();
-            //player1.GetComponent<PlayerControl>().Win();
+        #region Shortcuts
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    Player1Win();
+        //player1.GetComponent<PlayerControl>().Win();
         //
         //if(Input.GetKeyDown(KeyCode.Alpha2))
         //    player2.GetComponent<PlayerControl>().Win();
@@ -86,11 +87,15 @@ public class GameManager : MonoBehaviour
         //
         //if (Input.GetKeyDown(KeyCode.Q))
         //    player2.GetComponent<PlayerControl>().Lose();
+        #endregion
 
         switch (state)
         {
             case GameState.CHOOSE:
                 ChooseUpdate();
+                break;
+            case GameState.DELAYTOACTION:
+                GoAction();
                 break;
             case GameState.ACTION:
                 ActionUpdate();
@@ -112,71 +117,92 @@ public class GameManager : MonoBehaviour
 
         if (countDown < 1)
         {
-            player1.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);
-            player2.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);
             countDown = 0;
-            state = GameState.ACTION;
+            delayTimer = 1;
+            player1.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);
+            player2.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);            
+            state = GameState.DELAYTOACTION;
         }
+    }
+    void GoAction()
+    {
+        delayTimer -= Time.deltaTime;
+        if(delayTimer <= 0)
+        {
+            delayTimer = 0;
+            state = GameState.ACTION;
+        }       
     }
 
     void ActionUpdate()
     {
-        EventSystem.current.SetSelectedGameObject(null);
         int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
-        int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+        int _Player2 = player1.GetComponent<PlayerControl>().currentActionOpponent;
+        //int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+        //0 = nada
+        //1 = recargar
+        //2 = disparar
+        //3 = defenderse
         if (_Player1 == _Player2)
         {
+            Debug.LogError(_Player1 + " " + _Player2);
             countDown = 4;
             Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
         {
+            Debug.LogError(_Player1 + " " + _Player2);
             Player2Win();
         }
         else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
         {
+            Debug.LogError(_Player1 + " " + _Player2);
             Player1Win();
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
             countDown = 4;
+            Debug.LogError(_Player1 + " " + _Player2);
             Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
             countDown = 4;
+            Debug.LogError(_Player1 + " " + _Player2);
             Invoke("ReturnToChoose", 1f);
         }
+        EventSystem.current.SetSelectedGameObject(null);
+
     }
 
 
     public void Player1Win()
     {
+        state = GameState.RELOCATE;
         player1.GetComponent<PlayerControl>().currentCheckpoint++;
         player2.GetComponent<PlayerControl>().currentCheckpoint--;
         player1.GetComponent<PlayerControl>().Win();
         player2.GetComponent<PlayerControl>().Lose();
         audioManager.PlaySound(arrowImpact);
-        state = GameState.RELOCATE;
     }
 
     public void Player2Win()
     {
+        state = GameState.RELOCATE;
         player2.GetComponent<PlayerControl>().currentCheckpoint++;
         player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
         audioManager.PlaySound(arrowImpact);
-        state = GameState.RELOCATE;
     }
 
     public void ReturnToChoose()
     {
+        state = GameState.CHOOSE;
         player1.GetComponent<PlayerControl>().Empate();
         player2.GetComponent<PlayerControl>().Empate();
         player1.GetComponent<PlayerControl>().CurrentAction = 0;
         player2.GetComponent<PlayerControl>().CurrentAction = 0;
-        state = GameState.CHOOSE;
     }
 
     public void FinishGame(GameObject _winner)
