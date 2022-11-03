@@ -11307,6 +11307,7 @@ MonoBehaviour:
   state: 0
   TimelineIsDone: 0
   countDown: 0
+  delayTimer: 1
   cameraTarget: {fileID: 818455115}
   playersInstSpots:
   - {fileID: 1591829945}
@@ -17243,10 +17244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8461f74f99d5844fb7544b889c14acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonsAnim: {fileID: 0}
-  flagsImages: []
-  state: 0
   manager: {fileID: 1394598957}
+  state: 0
   checkPoints:
   - {fileID: 1600559742}
   - {fileID: 1849866087}
@@ -17260,9 +17259,18 @@ MonoBehaviour:
   - {fileID: 1142072982}
   - {fileID: 1911088631}
   - {fileID: 1790331441}
-  currentCheckpoint: 0
   IsPlayer1: 0
   cameraTarget: {fileID: 818455115}
+  layerToHit:
+    serializedVersion: 2
+    m_Bits: 128
+  opponent: {fileID: 0}
+  playerGrid: {fileID: 94809350}
+  anim: {fileID: 0}
+  ButtonsAnim: {fileID: 0}
+  flagsImages: []
+  actionsBtns: {fileID: 0}
+  currentCheckpoint: 0
   cameraX: -2
   CurrentAction: 0
   ammo: 0
@@ -17270,16 +17278,9 @@ MonoBehaviour:
   blood: {fileID: 693921038603737180, guid: 8fa4d9fa6e9e2e44c8ce21bef3b5babf, type: 3}
   fieldOfImpact: 2.1
   force: 10
-  layerToHit:
-    serializedVersion: 2
-    m_Bits: 128
-  actionsBtns: {fileID: 0}
-  opponent: {fileID: 0}
-  arrowImage: {fileID: 8171871671566972578, guid: f899bf2b466f6bf41bba24c16e179505, type: 3}
-  playerGrid: {fileID: 94809350}
-  anim: {fileID: 0}
   characters: []
   selectedChar: 0
+  arrowImage: {fileID: 8171871671566972578, guid: f899bf2b466f6bf41bba24c16e179505, type: 3}
   arrowPref: {fileID: 7520610529522563627, guid: 1c739ea6548cf1b4ab394b79d768c490, type: 3}
   arrowSpawnPos: {fileID: 1727666559}
   arrowControl: {fileID: 0}

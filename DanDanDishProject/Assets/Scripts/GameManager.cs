@@ -136,7 +136,6 @@ public class GameManager : MonoBehaviour
 
     void ActionUpdate()
     {
-        EventSystem.current.SetSelectedGameObject(null);
         int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
         int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         //0 = nada
@@ -145,57 +144,64 @@ public class GameManager : MonoBehaviour
         //3 = defenderse
         if (_Player1 == _Player2)
         {
+            Debug.LogError(_Player1 + " " + _Player2);
             countDown = 4;
             Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
         {
+            Debug.LogError(_Player1 + " " + _Player2);
             Player2Win();
         }
         else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
         {
+            Debug.LogError(_Player1 + " " + _Player2);
             Player1Win();
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
             countDown = 4;
+            Debug.LogError(_Player1 + " " + _Player2);
             Invoke("ReturnToChoose", 1f);
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
             countDown = 4;
+            Debug.LogError(_Player1 + " " + _Player2);
             Invoke("ReturnToChoose", 1f);
         }
+        EventSystem.current.SetSelectedGameObject(null);
+
     }
 
 
     public void Player1Win()
     {
+        state = GameState.RELOCATE;
         player1.GetComponent<PlayerControl>().currentCheckpoint++;
         player2.GetComponent<PlayerControl>().currentCheckpoint--;
         player1.GetComponent<PlayerControl>().Win();
         player2.GetComponent<PlayerControl>().Lose();
         audioManager.PlaySound(arrowImpact);
-        state = GameState.RELOCATE;
     }
 
     public void Player2Win()
     {
+        state = GameState.RELOCATE;
         player2.GetComponent<PlayerControl>().currentCheckpoint++;
         player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
         audioManager.PlaySound(arrowImpact);
-        state = GameState.RELOCATE;
     }
 
     public void ReturnToChoose()
     {
+        state = GameState.CHOOSE;
         player1.GetComponent<PlayerControl>().Empate();
         player2.GetComponent<PlayerControl>().Empate();
         player1.GetComponent<PlayerControl>().CurrentAction = 0;
         player2.GetComponent<PlayerControl>().CurrentAction = 0;
-        state = GameState.CHOOSE;
     }
 
     public void FinishGame(GameObject _winner)

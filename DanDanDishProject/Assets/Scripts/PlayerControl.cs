@@ -265,25 +265,25 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public void GoMove()
     {
         anim.SetTrigger("Run");
-        CurrentAction = 0;
         state = PlayerState.MOVE;
+        CurrentAction = 0;
     }
 
     public void Empate()
     {
         anim.SetTrigger("Idle");
-        CurrentAction = 0;
         state = PlayerState.CHOOSE;
+        CurrentAction = 0;
     }
 
     public void Lose()
     {
         Invoke("Die", 0.35f);
         BorrahFleixas();
-        CurrentAction = 0;
         if (ammo > 0) ammo = 0;
         print(currentCheckpoint);
         Invoke("Empate", 1);
+        CurrentAction = 0;
     }
 
     public void Die()
