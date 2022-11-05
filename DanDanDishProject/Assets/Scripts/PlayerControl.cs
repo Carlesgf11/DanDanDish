@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 {
     ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
     PhotonView view;
+
     public Player player;
     public GameManager manager;
     public enum PlayerState { CHOOSE, ACTION, ANIMS, MOVE, DIE };
@@ -32,7 +33,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public int currentCheckpoint;
     public int cameraX;
     public int CurrentAction;//1Recargar/ 2Disparar/ 3Defender
-    public int currentActionOpponent;
+    //public int currentActionOpponent;
     public int ammo;
     public GameObject ps, blood;
     public float fieldOfImpact, force;
@@ -54,7 +55,6 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         view = GetComponent<PhotonView>();
         AutoLeave();
-        CurrentAction = 0;
         currentCheckpoint = 5;
         ChargePlayersInfo();
         FindOpponent();
@@ -94,8 +94,11 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         if (player.CustomProperties.ContainsKey("CurrentAction"))
         {
-            print("CurrentAction");
             CurrentAction = (int)player.CustomProperties["CurrentAction"];
+        }
+        else
+        {
+            playerProperties["CurrentAction"] = 0;
         }
     }
 
@@ -104,9 +107,11 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         //Cargar informacion de los players
         manager = FindObjectOfType<GameManager>();
         cameraTarget = manager.cameraTarget;
-        selectedChar = (int)player.CustomProperties["playerAvatar"];
         characters = manager.characters;
+
+        selectedChar = (int)player.CustomProperties["playerAvatar"];
         ps = characters[(int)player.CustomProperties["playerAvatar"]].bodyParts;
+
         GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
         anim = renderChar.GetComponent<Animator>();
 
@@ -119,7 +124,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        currentActionOpponent = opponent.CurrentAction;
+        //currentActionOpponent = opponent.CurrentAction;
 
         switch (state)
         {
@@ -207,22 +212,15 @@ public class PlayerControl : MonoBehaviourPunCallbacks
   
     public void ButtonChoose(int _action)
     {
-        if (_action == 2 && ammo >= 1)
+        if (_action == 2 && ammo >= 1 || _action != 2) //PARA DISPARAR
         {
-            //CurrentAction = _action;
             playerProperties["CurrentAction"] = _action;
         }
         else
         {
             playerProperties["CurrentAction"] = 0;
         }
-        if (_action != 2)
-        {
-            //CurrentAction = _action;
-            playerProperties["CurrentAction"] = _action;
-        }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
-        //playerProperties["CurrentAction"] = _action;
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -232,7 +230,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             UpdatePlayerItem(targetPlayer);
         }
     }
-
+    #region MOVEMENT
     public void MoveUpdate()
     {
         ButtonsAnim.SetBool("Appear", false);
@@ -248,13 +246,10 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             }
             transform.position = finalPos;
             anim.SetTrigger("Idle");
-            manager.ReturnToChoose();
+            manager.ReturnToChoose(); //RETURN TO CHOOSE
             state = PlayerState.CHOOSE;
-
-            // ManagerChoose();
         }
     }
-
 
     public void Win()
     {
@@ -285,9 +280,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         Invoke("Die", 0.35f);
         BorrahFleixas();
         if (ammo > 0) ammo = 0;
-        print(currentCheckpoint);
         Invoke("Empate", 1);
-        CurrentAction = 0;
     }
 
     public void Die()
@@ -327,6 +320,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             else
                 break;
         }
+        ammo = 0;
     }
 
     void SlowMo()
@@ -338,7 +332,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     void NoSlowMo()
     {
         Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, 0.2f);
-
+         
     }
-
+    #endregion
 }

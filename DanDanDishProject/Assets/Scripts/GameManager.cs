@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Text DebugText; // ---------------------------------- DEBUG TEXT -------------------------------------------------
     //Prueba Commit
     public Animator ButtonsAnim;
     public List<GameObject> flagsImages;
@@ -137,7 +138,7 @@ public class GameManager : MonoBehaviour
     void ActionUpdate()
     {
         int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
-        int _Player2 = player1.GetComponent<PlayerControl>().currentActionOpponent;
+        int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         //int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
         //0 = nada
         //1 = recargar
@@ -145,36 +146,41 @@ public class GameManager : MonoBehaviour
         //3 = defenderse
         if (_Player1 == _Player2)
         {
-            Debug.LogError(_Player1 + " " + _Player2);
-            countDown = 4;
-            Invoke("ReturnToChoose", 1f);
+            //Invoke("ReturnToChoose", 1f);
+            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
         }
         else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
         {
-            Debug.LogError(_Player1 + " " + _Player2);
-            Player2Win();
+            //Player2Win();
+            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 2 WIN").ToString();
+            player1.GetComponent<PlayerControl>().BorrahFleixas();
+            player2.GetComponent<PlayerControl>().BorrahFleixas();
         }
         else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
         {
-            Debug.LogError(_Player1 + " " + _Player2);
-            Player1Win();
+            //Player1Win();
+            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 1 WIN").ToString();
+            player1.GetComponent<PlayerControl>().BorrahFleixas();
+            player2.GetComponent<PlayerControl>().BorrahFleixas();
         }
         else if (_Player1 < _Player2 && _Player2 != 2)
         {
-            countDown = 4;
-            Debug.LogError(_Player1 + " " + _Player2);
-            Invoke("ReturnToChoose", 1f);
+            //Invoke("ReturnToChoose", 1f);
+            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+
         }
         else if (_Player1 > _Player2 && _Player1 != 2)
         {
-            countDown = 4;
-            Debug.LogError(_Player1 + " " + _Player2);
-            Invoke("ReturnToChoose", 1f);
+            //Invoke("ReturnToChoose", 1f);
+            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+
         }
+        Invoke("ReturnToChoose", 1f);
         EventSystem.current.SetSelectedGameObject(null);
 
     }
 
+    
 
     public void Player1Win()
     {
@@ -198,11 +204,10 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToChoose()
     {
+        countDown = 4;
         state = GameState.CHOOSE;
-        player1.GetComponent<PlayerControl>().Empate();
-        player2.GetComponent<PlayerControl>().Empate();
-        player1.GetComponent<PlayerControl>().CurrentAction = 0;
-        player2.GetComponent<PlayerControl>().CurrentAction = 0;
+        player1.GetComponent<PlayerControl>().Empate();// El current acction ya se resetea en esta funcion.
+        player2.GetComponent<PlayerControl>().Empate();// El current acction ya se resetea en esta funcion.     
     }
 
     public void FinishGame(GameObject _winner)
