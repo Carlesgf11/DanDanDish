@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     PhotonView view;
 
-
+    bool isChoosing;
     private void Start()
     {
         view = GetComponent<PhotonView>();
@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
         delayTimer -= Time.deltaTime;
         if(delayTimer <= 0)
         {
+            isChoosing = true;
             delayTimer = 0;
             state = GameState.ACTION;
         }       
@@ -137,47 +138,49 @@ public class GameManager : MonoBehaviour
 
     void ActionUpdate()
     {
-        int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
-        int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
-        //int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
-        //0 = nada
-        //1 = recargar
-        //2 = disparar
-        //3 = defenderse
-        if (_Player1 == _Player2)
+        if(isChoosing)
         {
-            //Invoke("ReturnToChoose", 1f);
-            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
-        }
-        else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
-        {
-            //Player2Win();
-            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 2 WIN").ToString();
-            player1.GetComponent<PlayerControl>().BorrahFleixas();
-            player2.GetComponent<PlayerControl>().BorrahFleixas();
-        }
-        else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
-        {
-            //Player1Win();
-            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 1 WIN").ToString();
-            player1.GetComponent<PlayerControl>().BorrahFleixas();
-            player2.GetComponent<PlayerControl>().BorrahFleixas();
-        }
-        else if (_Player1 < _Player2 && _Player2 != 2)
-        {
-            //Invoke("ReturnToChoose", 1f);
-            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+            int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
+            int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+            //int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+            //0 = nada
+            //1 = recargar
+            //2 = disparar
+            //3 = defenderse
+            if (_Player1 == _Player2)
+            {
+                Invoke("ReturnToChoose", 1f);
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+            }
+            else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
+            {
+                Player2Win();
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 2 WIN").ToString();
+                player1.GetComponent<PlayerControl>().BorrahFleixas();
+                player2.GetComponent<PlayerControl>().BorrahFleixas();
+            }
+            else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
+            {
+                Player1Win();
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 1 WIN").ToString();
+                player1.GetComponent<PlayerControl>().BorrahFleixas();
+                player2.GetComponent<PlayerControl>().BorrahFleixas();
+            }
+            else if (_Player1 < _Player2 && _Player2 != 2)
+            {
+                Invoke("ReturnToChoose", 1f);
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
 
-        }
-        else if (_Player1 > _Player2 && _Player1 != 2)
-        {
-            //Invoke("ReturnToChoose", 1f);
-            DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+            }
+            else if (_Player1 > _Player2 && _Player1 != 2)
+            {
+                Invoke("ReturnToChoose", 1f);
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
 
+            }
+            isChoosing = false;
         }
-        Invoke("ReturnToChoose", 1f);
-        EventSystem.current.SetSelectedGameObject(null);
-
+        EventSystem.current.SetSelectedGameObject(null);  
     }
 
     

@@ -83,11 +83,19 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         player = _player;
         UpdatePlayerItem(player);
     }
-
+    
     public void ApplyLocalChanges()
     {
         //actionsBtns.SetActive(true);
         ButtonsAnim.gameObject.SetActive(true);
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if (player == targetPlayer)
+        {
+            UpdatePlayerItem(targetPlayer);
+        }
     }
 
     void UpdatePlayerItem(Player player)
@@ -204,32 +212,31 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private void ChooseUpdate()
     {
         canSpawnArrow = true;
-        if (manager.state != GameManager.GameState.CHOOSE || manager.state != GameManager.GameState.RELOCATE)
+        if (manager.state == GameManager.GameState.DELAYTOACTION)
         {
             state = PlayerState.ACTION;
         }
     }
   
     public void ButtonChoose(int _action)
-    {
-        if (_action == 2 && ammo >= 1 || _action != 2) //PARA DISPARAR
+    {  
+        if (_action == 2 && ammo <= 0) //PARA DISPARAR
         {
-            playerProperties["CurrentAction"] = _action;
+            playerProperties["CurrentAction"] = 0;
         }
         else
         {
-            playerProperties["CurrentAction"] = 0;
+            playerProperties["CurrentAction"] = _action;
         }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    private void ResetPlayerProperties() //Funcion para resetear el current action y el player properties (by Albert Pitarque)
     {
-        if (player == targetPlayer)
-        {
-            UpdatePlayerItem(targetPlayer);
-        }
+        playerProperties["CurrentAction"] = 0;
+        PhotonNetwork.SetPlayerCustomProperties(playerProperties);
     }
+
     #region MOVEMENT
     public void MoveUpdate()
     {
@@ -265,14 +272,14 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         anim.SetTrigger("Run");
         state = PlayerState.MOVE;
-        CurrentAction = 0;
+        ResetPlayerProperties();
     }
 
     public void Empate()
     {
         anim.SetTrigger("Idle");
         state = PlayerState.CHOOSE;
-        CurrentAction = 0;
+        ResetPlayerProperties();
     }
 
     public void Lose()
