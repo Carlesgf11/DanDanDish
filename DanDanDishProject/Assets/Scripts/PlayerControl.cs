@@ -64,9 +64,15 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         playersInstSpots = manager.playersInstSpots;
         if (transform.parent.transform.parent == playersInstSpots[0])
+        {
             opponent = playersInstSpots[1].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
+            IsPlayer1 = true;
+        }
         else if (transform.parent.transform.parent == playersInstSpots[1])
+        {
             opponent = playersInstSpots[0].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
+            IsPlayer1 = false;
+        }
     }
 
     public void AutoLeave()
@@ -248,7 +254,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         {
             if (currentCheckpoint >= 11)
             {
-                manager.FinishGame(gameObject);
+                manager.FinishGame(gameObject, IsPlayer1);
                 return;
             }
             transform.position = finalPos;
@@ -334,12 +340,12 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         Camera.main.GetComponent<CameraShake>().ShakeIt();
         Time.timeScale = Mathf.Lerp(Time.timeScale, 0.5f, 0.5f);
+        manager.InstStructureBreak(IsPlayer1);
         Invoke("NoSlowMo", 0.75f);
     }
     void NoSlowMo()
     {
         Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, 0.2f);
-         
     }
     #endregion
 }

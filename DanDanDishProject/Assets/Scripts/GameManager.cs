@@ -24,9 +24,6 @@ public class GameManager : MonoBehaviour
 
     public Text countDownText;
 
-    public GameObject winnerPanel;
-    public Text winnerText;
-
     [Header("CargarInfoPlayers")]
     public int Player1Char, Player2Char;
     public List<ScriptableCharacters> characters;
@@ -45,6 +42,15 @@ public class GameManager : MonoBehaviour
     PhotonView view;
 
     bool isChoosing;
+
+    [Header("End")]
+    [SerializeField] GameObject structureParts;
+    [SerializeField] Transform structurePos1, structurePos2;
+    [SerializeField] GameObject structure1, structure2;
+    public GameObject winnerPanel;
+    public Text winnerText;
+    [SerializeField] bool winnerPlayer1;
+
     private void Start()
     {
         view = GetComponent<PhotonView>();
@@ -213,12 +219,35 @@ public class GameManager : MonoBehaviour
         player2.GetComponent<PlayerControl>().Empate();// El current acction ya se resetea en esta funcion.     
     }
 
-    public void FinishGame(GameObject _winner)
+    public void FinishGame(GameObject _winner, bool _isPlayer1)
     {
         winnerPanel.SetActive(true);
         winnerText.text = _winner.name + " wins";
         print(_winner + "Wins");
+        //Instanciar partes de la estructura
+        //InstStructureBreak(_isPlayer1);
         state = GameState.GAMEFINISHED;
+    }
+
+    public void InstStructureBreak(bool _isPlayer1)
+    {
+        Vector3 finalPos = new Vector3(0, 0, 0);
+        int finaldir = 1;
+
+        if (_isPlayer1)
+        {
+            finalPos = structurePos1.position;
+            finaldir = -1;
+            Destroy(structure1);
+        }
+        if (!_isPlayer1)
+        {
+            finalPos = structurePos2.position;
+            Destroy(structure2);
+        }
+
+        GameObject structurePartsTemp = Instantiate(structureParts, finalPos, Quaternion.identity);
+        structurePartsTemp.transform.localScale = new Vector3(finaldir, 1, 1);
     }
 
     void RelocateUpdate()
