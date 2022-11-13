@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Text DebugText; // ---------------------------------- DEBUG TEXT -------------------------------------------------
     //Prueba Commit
     public Animator ButtonsAnim;
     public List<GameObject> flagsImages;
@@ -22,9 +23,6 @@ public class GameManager : MonoBehaviour
     public GameObject player1, player2;
 
     public Text countDownText;
-
-    public GameObject winnerPanel;
-    public Text winnerText;
 
     [Header("CargarInfoPlayers")]
     public int Player1Char, Player2Char;
@@ -43,6 +41,15 @@ public class GameManager : MonoBehaviour
 
     PhotonView view;
 
+    bool isChoosing;
+
+    [Header("End")]
+    [SerializeField] GameObject structureParts;
+    [SerializeField] Transform structurePos1, structurePos2;
+    [SerializeField] GameObject structure1, structure2;
+    public GameObject winnerPanel;
+    public Text winnerText;
+    [SerializeField] bool winnerPlayer1;
 
     private void Start()
     {
@@ -129,6 +136,7 @@ public class GameManager : MonoBehaviour
         delayTimer -= Time.deltaTime;
         if(delayTimer <= 0)
         {
+            isChoosing = true;
             delayTimer = 0;
             state = GameState.ACTION;
         }       
@@ -136,44 +144,52 @@ public class GameManager : MonoBehaviour
 
     void ActionUpdate()
     {
-        int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
-        int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
-        //0 = nada
-        //1 = recargar
-        //2 = disparar
-        //3 = defenderse
-        if (_Player1 == _Player2)
+        if(isChoosing)
         {
-            Debug.LogError(_Player1 + " " + _Player2);
-            countDown = 4;
-            Invoke("ReturnToChoose", 1f);
-        }
-        else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
-        {
-            Debug.LogError(_Player1 + " " + _Player2);
-            Player2Win();
-        }
-        else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
-        {
-            Debug.LogError(_Player1 + " " + _Player2);
-            Player1Win();
-        }
-        else if (_Player1 < _Player2 && _Player2 != 2)
-        {
-            countDown = 4;
-            Debug.LogError(_Player1 + " " + _Player2);
-            Invoke("ReturnToChoose", 1f);
-        }
-        else if (_Player1 > _Player2 && _Player1 != 2)
-        {
-            countDown = 4;
-            Debug.LogError(_Player1 + " " + _Player2);
-            Invoke("ReturnToChoose", 1f);
-        }
-        EventSystem.current.SetSelectedGameObject(null);
+            int _Player1 = player1.GetComponent<PlayerControl>().CurrentAction;
+            int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+            //int _Player2 = player2.GetComponent<PlayerControl>().CurrentAction;
+            //0 = nada
+            //1 = recargar
+            //2 = disparar
+            //3 = defenderse
+            if (_Player1 == _Player2)
+            {
+                Invoke("ReturnToChoose", 1f);
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+            }
+            else if (_Player1 < _Player2 && _Player2 != 3 && _Player2 != 1)
+            {
+                Player2Win();
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 2 WIN").ToString();
+                player1.GetComponent<PlayerControl>().BorrahFleixas();
+                player2.GetComponent<PlayerControl>().BorrahFleixas();
+            }
+            else if (_Player1 > _Player2 && _Player1 != 3 && _Player1 != 1)
+            {
+                Player1Win();
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "Player 1 WIN").ToString();
+                player1.GetComponent<PlayerControl>().BorrahFleixas();
+                player2.GetComponent<PlayerControl>().BorrahFleixas();
+            }
+            else if (_Player1 < _Player2 && _Player2 != 2)
+            {
+                Invoke("ReturnToChoose", 1f);
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
 
+            }
+            else if (_Player1 > _Player2 && _Player1 != 2)
+            {
+                Invoke("ReturnToChoose", 1f);
+                //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
+
+            }
+            isChoosing = false;
+        }
+        EventSystem.current.SetSelectedGameObject(null);  
     }
 
+    
 
     public void Player1Win()
     {
@@ -197,19 +213,41 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToChoose()
     {
+        countDown = 4;
         state = GameState.CHOOSE;
-        player1.GetComponent<PlayerControl>().Empate();
-        player2.GetComponent<PlayerControl>().Empate();
-        player1.GetComponent<PlayerControl>().CurrentAction = 0;
-        player2.GetComponent<PlayerControl>().CurrentAction = 0;
+        player1.GetComponent<PlayerControl>().Empate();// El current acction ya se resetea en esta funcion.
+        player2.GetComponent<PlayerControl>().Empate();// El current acction ya se resetea en esta funcion.     
     }
 
-    public void FinishGame(GameObject _winner)
+    public void FinishGame(GameObject _winner, bool _isPlayer1)
     {
         winnerPanel.SetActive(true);
         winnerText.text = _winner.name + " wins";
         print(_winner + "Wins");
+        //Instanciar partes de la estructura
+        //InstStructureBreak(_isPlayer1);
         state = GameState.GAMEFINISHED;
+    }
+
+    public void InstStructureBreak(bool _isPlayer1)
+    {
+        Vector3 finalPos = new Vector3(0, 0, 0);
+        int finaldir = 1;
+
+        if (_isPlayer1)
+        {
+            finalPos = structurePos1.position;
+            finaldir = -1;
+            Destroy(structure1);
+        }
+        if (!_isPlayer1)
+        {
+            finalPos = structurePos2.position;
+            Destroy(structure2);
+        }
+
+        GameObject structurePartsTemp = Instantiate(structureParts, finalPos, Quaternion.identity);
+        structurePartsTemp.transform.localScale = new Vector3(finaldir, 1, 1);
     }
 
     void RelocateUpdate()

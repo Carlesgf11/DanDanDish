@@ -63,7 +63,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (Time.time >= nextUpdateTime)
         {
-            print("refresh");
             UpdateRoomList(roomList);
             nextUpdateTime = Time.time + timeBetweenUpdates;
         }
@@ -73,8 +72,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         foreach (RoomItem item in roomItemList)
         {
-
-            print("aaa");
             Destroy(item.gameObject);
         }
         roomItemList.Clear();

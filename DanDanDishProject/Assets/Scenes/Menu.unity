@@ -4173,8 +4173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72884a9afd5eea4ba2f4af4f32e0d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createInput: {fileID: 1585541577}
-  joinInpt: {fileID: 1019605398}
 --- !u!4 &1706948170
 Transform:
   m_ObjectHideFlags: 0

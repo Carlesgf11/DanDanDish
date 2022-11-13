@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 {
     ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
     PhotonView view;
+
     public Player player;
     public GameManager manager;
     public enum PlayerState { CHOOSE, ACTION, ANIMS, MOVE, DIE };
@@ -32,6 +33,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public int currentCheckpoint;
     public int cameraX;
     public int CurrentAction;//1Recargar/ 2Disparar/ 3Defender
+    //public int currentActionOpponent;
     public int ammo;
     public GameObject ps, blood;
     public float fieldOfImpact, force;
@@ -53,7 +55,6 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         view = GetComponent<PhotonView>();
         AutoLeave();
-        CurrentAction = 0;
         currentCheckpoint = 5;
         ChargePlayersInfo();
         FindOpponent();
@@ -63,9 +64,15 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         playersInstSpots = manager.playersInstSpots;
         if (transform.parent.transform.parent == playersInstSpots[0])
+        {
             opponent = playersInstSpots[1].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
+            IsPlayer1 = true;
+        }
         else if (transform.parent.transform.parent == playersInstSpots[1])
+        {
             opponent = playersInstSpots[0].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
+            IsPlayer1 = false;
+        }
     }
 
     public void AutoLeave()
@@ -82,19 +89,30 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         player = _player;
         UpdatePlayerItem(player);
     }
-
+    
     public void ApplyLocalChanges()
     {
         //actionsBtns.SetActive(true);
         ButtonsAnim.gameObject.SetActive(true);
     }
 
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if (player == targetPlayer)
+        {
+            UpdatePlayerItem(targetPlayer);
+        }
+    }
+
     void UpdatePlayerItem(Player player)
     {
         if (player.CustomProperties.ContainsKey("CurrentAction"))
         {
-            print("CurrentAction");
             CurrentAction = (int)player.CustomProperties["CurrentAction"];
+        }
+        else
+        {
+            playerProperties["CurrentAction"] = 0;
         }
     }
 
@@ -103,9 +121,11 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         //Cargar informacion de los players
         manager = FindObjectOfType<GameManager>();
         cameraTarget = manager.cameraTarget;
-        selectedChar = (int)player.CustomProperties["playerAvatar"];
         characters = manager.characters;
+
+        selectedChar = (int)player.CustomProperties["playerAvatar"];
         ps = characters[(int)player.CustomProperties["playerAvatar"]].bodyParts;
+
         GameObject renderChar = Instantiate(characters[selectedChar].anim, transform);
         anim = renderChar.GetComponent<Animator>();
 
@@ -118,10 +138,13 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+        //currentActionOpponent = opponent.CurrentAction;
+
         switch (state)
         {
             case PlayerState.CHOOSE:
                 ChooseUpdate();
+                //currentActionOpponent = opponent.CurrentAction;
                 break;
             case PlayerState.ACTION:
                 ActionUpate();
@@ -195,40 +218,32 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private void ChooseUpdate()
     {
         canSpawnArrow = true;
-        if (manager.state != GameManager.GameState.CHOOSE || manager.state != GameManager.GameState.RELOCATE)
+        if (manager.state == GameManager.GameState.DELAYTOACTION)
         {
             state = PlayerState.ACTION;
         }
     }
   
     public void ButtonChoose(int _action)
-    {
-        if (_action == 2 && ammo >= 1)
-        {
-            //CurrentAction = _action;
-            playerProperties["CurrentAction"] = _action;
-        }
-        else
+    {  
+        if (_action == 2 && ammo <= 0) //PARA DISPARAR
         {
             playerProperties["CurrentAction"] = 0;
         }
-        if (_action != 2)
+        else
         {
-            //CurrentAction = _action;
             playerProperties["CurrentAction"] = _action;
         }
         PhotonNetwork.SetPlayerCustomProperties(playerProperties);
-        //playerProperties["CurrentAction"] = _action;
     }
 
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    private void ResetPlayerProperties() //Funcion para resetear el current action y el player properties (by Albert Pitarque)
     {
-        if (player == targetPlayer)
-        {
-            UpdatePlayerItem(targetPlayer);
-        }
+        playerProperties["CurrentAction"] = 0;
+        PhotonNetwork.SetPlayerCustomProperties(playerProperties);
     }
 
+    #region MOVEMENT
     public void MoveUpdate()
     {
         ButtonsAnim.SetBool("Appear", false);
@@ -239,18 +254,15 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         {
             if (currentCheckpoint >= 11)
             {
-                manager.FinishGame(gameObject);
+                manager.FinishGame(gameObject, IsPlayer1);
                 return;
             }
             transform.position = finalPos;
             anim.SetTrigger("Idle");
-            manager.ReturnToChoose();
+            manager.ReturnToChoose(); //RETURN TO CHOOSE
             state = PlayerState.CHOOSE;
-
-            // ManagerChoose();
         }
     }
-
 
     public void Win()
     {
@@ -266,14 +278,14 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     {
         anim.SetTrigger("Run");
         state = PlayerState.MOVE;
-        CurrentAction = 0;
+        ResetPlayerProperties();
     }
 
     public void Empate()
     {
         anim.SetTrigger("Idle");
         state = PlayerState.CHOOSE;
-        CurrentAction = 0;
+        ResetPlayerProperties();
     }
 
     public void Lose()
@@ -281,9 +293,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         Invoke("Die", 0.35f);
         BorrahFleixas();
         if (ammo > 0) ammo = 0;
-        print(currentCheckpoint);
         Invoke("Empate", 1);
-        CurrentAction = 0;
     }
 
     public void Die()
@@ -323,18 +333,19 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             else
                 break;
         }
+        ammo = 0;
     }
 
     void SlowMo()
     {
         Camera.main.GetComponent<CameraShake>().ShakeIt();
         Time.timeScale = Mathf.Lerp(Time.timeScale, 0.5f, 0.5f);
+        manager.InstStructureBreak(IsPlayer1);
         Invoke("NoSlowMo", 0.75f);
     }
     void NoSlowMo()
     {
         Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, 0.2f);
-
     }
-
+    #endregion
 }
