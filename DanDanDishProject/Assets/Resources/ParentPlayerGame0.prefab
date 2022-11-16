@@ -1488,6 +1488,10 @@ MonoBehaviour:
   arrowSpawnPos: {fileID: 8015144486839084750}
   arrowControl: {fileID: 0}
   SpriteJugador: {fileID: 0}
+  playerSFX:
+  - clip: {fileID: 0}
+    volume: 0
+    pitch: 0
 --- !u!114 &8015144485826630639
 MonoBehaviour:
   m_ObjectHideFlags: 0

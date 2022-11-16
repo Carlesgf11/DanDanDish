@@ -51,6 +51,8 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private bool canSpawnArrow;
     public GameObject SpriteJugador;
 
+
+    
     private void Start()
     {
         view = GetComponent<PhotonView>();
@@ -189,9 +191,11 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         if (CurrentAction == 1)
         {
             anim.SetTrigger("Recharge");
+            //SONIDO DE RECARGAR-------------------------------------------------------------------------------------------->
         }
         if (CurrentAction == 2)
         {
+            //SONIDO DISPARAR-------------------------------------------------------------------------------------------->
             anim.SetTrigger("Shoot");
             if (IsPlayer1)
                 ShootArrow(Vector3.right, Quaternion.identity);
@@ -200,6 +204,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         }
         if (CurrentAction == 3)
         {
+            //SONIDO DEFENDERSE-------------------------------------------------------------------------------------------->
             anim.SetTrigger("Defend");
         }
     }

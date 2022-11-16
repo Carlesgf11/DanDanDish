@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
         player2.GetComponent<PlayerControl>().currentCheckpoint--;
         player1.GetComponent<PlayerControl>().Win();
         player2.GetComponent<PlayerControl>().Lose();
-        audioManager.PlaySound(arrowImpact);
+        audioManager.PlaySound("arrowImpact");
     }
 
     public void Player2Win()
@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
-        audioManager.PlaySound(arrowImpact);
+        audioManager.PlaySound("arrowImpact");
     }
 
     public void ReturnToChoose()
