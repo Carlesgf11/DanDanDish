@@ -51,14 +51,23 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private bool canSpawnArrow;
     public GameObject SpriteJugador;
 
+    [SerializeField] GameObject shieldObj;
 
-    
+    [Header("Audio")]
+    public AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();    
+    }
+
     private void Start()
     {
         view = GetComponent<PhotonView>();
         AutoLeave();
         currentCheckpoint = 5;
         ChargePlayersInfo();
+        shieldObj.SetActive(false);
         FindOpponent();
     }
 
@@ -167,6 +176,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         manager.TimelineIsDone = true;
         if (CurrentAction == 1)
         {
+            shieldObj.SetActive(false);
             ammo++;
             GameObject newArrow = Instantiate(arrowImage, playerGrid.transform.position, Quaternion.identity);
             newArrow.transform.parent = playerGrid.transform;
@@ -174,6 +184,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         }
         if (CurrentAction == 2) 
         {
+            shieldObj.SetActive(false);
             if (ammo > 0) ammo--;
            
             if (playerGrid.transform.childCount > 0)
@@ -182,6 +193,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         }
         if (CurrentAction == 3)
         {
+            shieldObj.SetActive(true);
             state = PlayerState.ANIMS;
         }
     }
@@ -214,6 +226,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         if(canSpawnArrow)
         {
             GameObject newArrow = Instantiate(arrowPref, arrowSpawnPos.position, _rot);
+            audioManager.PlaySound("Shooting");
             arrowControl = newArrow.GetComponent<ArrowControl>();
             arrowControl.arrowDir = _dir;
             canSpawnArrow = false;
@@ -282,6 +295,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public void GoMove()
     {
         anim.SetTrigger("Run");
+        shieldObj.SetActive(false);
         state = PlayerState.MOVE;
         ResetPlayerProperties();
     }
@@ -289,6 +303,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public void Empate()
     {
         anim.SetTrigger("Idle");
+        shieldObj.SetActive(false);
         state = PlayerState.CHOOSE;
         ResetPlayerProperties();
     }
@@ -312,6 +327,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             Vector2 direction = (Vector2)obj.transform.position - pos;
             obj.GetComponent<Rigidbody2D>().AddForce(direction * force * 100f);
         }
+        audioManager.PlaySound("BodyExplosion");
         ps.transform.SetParent(null);
 
         //Cambiar pos
