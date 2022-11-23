@@ -264,13 +264,11 @@ public class GameManager : MonoBehaviour
     {
         if(_pause)
         {
-            Time.timeScale = 0;
             pause = true;
             pausePanel.SetActive(true);
         }
         else
         {
-            Time.timeScale = 1;
             pause = false;
             pausePanel.SetActive(false);
         }

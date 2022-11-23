@@ -56,7 +56,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         lobbyPanel.SetActive(false);
         roomPanel.SetActive(true);
         audioManager.PlaySound("MusicDrumps");
-        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
+        roomName.text = PhotonNetwork.CurrentRoom.Name;
         UpdatePlayerList();
     }
 
