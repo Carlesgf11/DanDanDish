@@ -6,6 +6,8 @@ TagManager:
   tags:
   - cam2
   - Arrow
+  - Bullet
+  - Shield
   layers:
   - Default
   - TransparentFX

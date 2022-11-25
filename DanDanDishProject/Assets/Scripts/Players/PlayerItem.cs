@@ -21,10 +21,19 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
     public Player player;
     public GameObject PlayerImage;
+
+    public AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
     private void Start()
     {
         backgroundImage = GetComponent<Image>();
     }
+
     public void SetPlayerInfo(Player _player)
     {
         //playerName.text = _player.NickName;
@@ -39,6 +48,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     }
     public void OnClickLeftArrow()
     {
+        audioManager.PlaySound("UI_Btn1");
         if ((int)playerProperties["playerAvatar"] == 0)
         {
             playerProperties["playerAvatar"] = avatars.Length - 1;
@@ -51,6 +61,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     }
     public void OnClickRighttArrow()
     {
+        audioManager.PlaySound("UI_Btn1");
         if ((int)playerProperties["playerAvatar"] == avatars.Length - 1)
         {
             playerProperties["playerAvatar"] = 0;

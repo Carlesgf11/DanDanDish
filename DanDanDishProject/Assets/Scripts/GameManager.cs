@@ -36,8 +36,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Sounds")]
     public AudioManager audioManager;
-    public AudioSource arrowImpact;
-    public AudioSource arrowImpact2;
 
     PhotonView view;
 
@@ -125,7 +123,7 @@ public class GameManager : MonoBehaviour
         if (countDown < 1)
         {
             countDown = 0;
-            delayTimer = 1;
+            delayTimer = 0.4f;
             player1.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);
             player2.GetComponent<PlayerControl>().ButtonsAnim.SetBool("Appear", false);            
             state = GameState.DELAYTOACTION;
@@ -155,6 +153,8 @@ public class GameManager : MonoBehaviour
             //3 = defenderse
             if (_Player1 == _Player2)
             {
+                if (_Player1 == 3)
+                    audioManager.PlaySound("DobleShield");
                 Invoke("ReturnToChoose", 1f);
                 //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
             }
@@ -174,15 +174,19 @@ public class GameManager : MonoBehaviour
             }
             else if (_Player1 < _Player2 && _Player2 != 2)
             {
+                //if (_Player2 != 0)
+                //    audioManager.PlaySound("ArrowImpact_Wood");
+
                 Invoke("ReturnToChoose", 1f);
                 //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
-
             }
             else if (_Player1 > _Player2 && _Player1 != 2)
             {
+                //if(_Player1 != 0)
+                //    audioManager.PlaySound("ArrowImpact_Wood");
+
                 Invoke("ReturnToChoose", 1f);
                 //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
-
             }
             isChoosing = false;
         }
@@ -198,7 +202,7 @@ public class GameManager : MonoBehaviour
         player2.GetComponent<PlayerControl>().currentCheckpoint--;
         player1.GetComponent<PlayerControl>().Win();
         player2.GetComponent<PlayerControl>().Lose();
-        audioManager.PlaySound(arrowImpact);
+        audioManager.PlaySound("arrowImpact");
     }
 
     public void Player2Win()
@@ -208,7 +212,7 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<PlayerControl>().currentCheckpoint--;
         player2.GetComponent<PlayerControl>().Win();
         player1.GetComponent<PlayerControl>().Lose();
-        audioManager.PlaySound(arrowImpact);
+        audioManager.PlaySound("arrowImpact");
     }
 
     public void ReturnToChoose()
@@ -260,13 +264,11 @@ public class GameManager : MonoBehaviour
     {
         if(_pause)
         {
-            Time.timeScale = 0;
             pause = true;
             pausePanel.SetActive(true);
         }
         else
         {
-            Time.timeScale = 1;
             pause = false;
             pausePanel.SetActive(false);
         }

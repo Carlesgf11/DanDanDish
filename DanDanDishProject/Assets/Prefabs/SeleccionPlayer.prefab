@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
+  m_SizeDelta: {x: 242.3, y: 242.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1788223923566597042
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 486baaf6a38dd50478a5a1e784d609db, type: 3}
+  m_Sprite: {fileID: 4176837961183171270, guid: bae14d1fc6c4d3d43b5d1bcabda3c990, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -322,7 +322,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
+  m_SizeDelta: {x: 242.3, y: 242.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1788223924517746312
 CanvasRenderer:
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 486baaf6a38dd50478a5a1e784d609db, type: 3}
+  m_Sprite: {fileID: 4176837961183171270, guid: bae14d1fc6c4d3d43b5d1bcabda3c990, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -693,6 +693,7 @@ MonoBehaviour:
   playerAvatar: {fileID: 1788223924591772845}
   playerFlagAnimator: {fileID: 1788223924093115517}
   PlayerImage: {fileID: 1788223924791317060}
+  audioManager: {fileID: 0}
 --- !u!222 &6413633730214403751
 CanvasRenderer:
   m_ObjectHideFlags: 0

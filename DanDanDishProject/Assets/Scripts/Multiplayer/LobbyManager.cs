@@ -27,21 +27,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private PlayerItem MyPlayer;
 
     public GameObject btnPlay;
+    [SerializeField] GameObject loadingPanel;
+
+    [Header("Audio")]
+    public AudioManager audioManager;
 
     private void Awake()
     {
         lobbyPanel.SetActive(true);
         roomPanel.SetActive(false);
+        loadingPanel.SetActive(false);
     }
     private void Start()
     {
         PhotonNetwork.JoinLobby();
         btnPlay.SetActive(false);
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void OnClickCreate()
@@ -55,7 +55,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         lobbyPanel.SetActive(false);
         roomPanel.SetActive(true);
-        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
+        audioManager.PlaySound("MusicDrumps");
+        roomName.text = PhotonNetwork.CurrentRoom.Name;
         UpdatePlayerList();
     }
 
@@ -169,6 +170,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
     public void OnClickPlayBtn()
+    {
+        loadingPanel.SetActive(true);
+        audioManager.StopSound("MusicDrumps");
+        Invoke("ChangeSceneToGame", 1.7f);
+    }
+
+    public void ChangeSceneToGame()
     {
         PhotonNetwork.LoadLevel("Game");
     }
