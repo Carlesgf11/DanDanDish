@@ -8,6 +8,8 @@ using TMPro;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
+    public SceneManagement sceneManagment;
+
     public GameObject lobbyPanel;
     public GameObject roomPanel;
     public Text roomName;
@@ -180,5 +182,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("Game");
     }
+
+
+    #region DisconnectFunctions
+    public void DisconectDelay()
+    {
+        loadingPanel.SetActive(true);
+        Invoke("Disconnect", 0.6f);
+    }
+
+    public void Disconnect()
+    {
+        PhotonNetwork.Disconnect();
+        sceneManagment.ChangeScene(0);
+    }
+    #endregion
 }
 
