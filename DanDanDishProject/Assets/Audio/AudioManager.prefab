@@ -59,3 +59,31 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: UI_Btn1
+    clip: {fileID: 8300000, guid: 8afd444c06f4f9346a6a35738d10823b, type: 3}
+    group: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayCharSelect
+    clip: {fileID: 8300000, guid: 3a6de7bec22513040baa3360fd654f33, type: 3}
+    group: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.85
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusicDrumps
+    clip: {fileID: 8300000, guid: d69901298dddcbc4f8b8eb406837e0fa, type: 3}
+    group: {fileID: -5771833931840626138, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MusicMenu
+    clip: {fileID: 8300000, guid: 312a0dbfb4ffc064abc73e2bcc66df68, type: 3}
+    group: {fileID: -5771833931840626138, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

@@ -42,6 +42,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
+        audioManager.PlaySound("MusicMenu");
         PhotonNetwork.JoinLobby();
         btnPlay.SetActive(false);
     }
@@ -57,6 +58,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         lobbyPanel.SetActive(false);
         roomPanel.SetActive(true);
+        audioManager.StopSound("MusicMenu");
         audioManager.PlaySound("MusicDrumps");
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         UpdatePlayerList();
@@ -99,6 +101,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickLeaveRoom()
     {
+        audioManager.StopSound("MusicDrumps");
+        audioManager.PlaySound("MusicMenu");
         PhotonNetwork.LeaveRoom();
     }
 
