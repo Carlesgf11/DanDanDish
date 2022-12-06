@@ -273,6 +273,10 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             if (currentCheckpoint >= 11)
             {
                 manager.FinishGame(gameObject, IsPlayer1);
+                //Cargar sonidos de ganar y perder
+                //TO DO buscar sonidos de win y lose
+                audioManager.PlaySound("Win");
+                opponent.audioManager.PlaySound("Lose"); //TO DO Probar en dos builds si suena cada sonido en el jugador que toca 
                 return;
             }
             transform.position = finalPos;
