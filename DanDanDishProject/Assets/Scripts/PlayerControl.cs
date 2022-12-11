@@ -203,11 +203,9 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         if (CurrentAction == 1)
         {
             anim.SetTrigger("Recharge");
-            //SONIDO DE RECARGAR-------------------------------------------------------------------------------------------->
         }
         if (CurrentAction == 2)
         {
-            //SONIDO DISPARAR-------------------------------------------------------------------------------------------->
             anim.SetTrigger("Shoot");
             if (IsPlayer1)
                 ShootArrow(Vector3.right, Quaternion.identity);
@@ -216,7 +214,6 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         }
         if (CurrentAction == 3)
         {
-            //SONIDO DEFENDERSE-------------------------------------------------------------------------------------------->
             anim.SetTrigger("Defend");
         }
     }
@@ -273,10 +270,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             if (currentCheckpoint >= 11)
             {
                 manager.FinishGame(gameObject, IsPlayer1);
-                //Cargar sonidos de ganar y perder
-                //TO DO buscar sonidos de win y lose
-                audioManager.PlaySound("Win");
-                opponent.audioManager.PlaySound("Lose"); //TO DO Probar en dos builds si suena cada sonido en el jugador que toca 
+                //Sonidos de win y lose aquí
                 return;
             }
             transform.position = finalPos;

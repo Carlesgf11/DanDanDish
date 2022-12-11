@@ -68,8 +68,7 @@ public class GameManager : MonoBehaviour
         //optionsPanel.SetActive(false); //Si se hace este set active se activa la funcion onDisable del VolumeSetting y se pone chungo todo
         Player1Char = PlayerPrefs.GetInt("Player1", 0);
         Player2Char = PlayerPrefs.GetInt("Player2", 0);
-        //print(Player1Char);
-        //print(Player2Char);
+
         for (int i = 0; i < flagsImages.Count; i++)
         {
             flagsImages[i].GetComponent<Image>().sprite = characters[Player1Char].flagSprite;
@@ -174,17 +173,11 @@ public class GameManager : MonoBehaviour
             }
             else if (_Player1 < _Player2 && _Player2 != 2)
             {
-                //if (_Player2 != 0)
-                //    audioManager.PlaySound("ArrowImpact_Wood");
-
                 Invoke("ReturnToChoose", 1f);
                 //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
             }
             else if (_Player1 > _Player2 && _Player1 != 2)
             {
-                //if(_Player1 != 0)
-                //    audioManager.PlaySound("ArrowImpact_Wood");
-
                 Invoke("ReturnToChoose", 1f);
                 //DebugText.text = (_Player1 + " - " + _Player2 + "\n" + "EMPATE").ToString();
             }
@@ -227,9 +220,8 @@ public class GameManager : MonoBehaviour
     {
         winnerPanel.SetActive(true);
         winnerText.text = _winner.name + " wins";
+        audioManager.PlaySound("FinishGame");
         print(_winner + "Wins");
-        //Instanciar partes de la estructura
-        //InstStructureBreak(_isPlayer1);
         state = GameState.GAMEFINISHED;
     }
 
@@ -237,6 +229,8 @@ public class GameManager : MonoBehaviour
     {
         Vector3 finalPos = new Vector3(0, 0, 0);
         int finaldir = 1;
+
+        audioManager.PlaySound("RockExplosion");
 
         if (_isPlayer1)
         {
@@ -275,3 +269,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 }
+
+//Sonido recargar
+//Hacer más corto el juego
+//Switch platform
