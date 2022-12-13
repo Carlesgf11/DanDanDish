@@ -8,6 +8,8 @@ using TMPro;
 
 public class PlayerItem : MonoBehaviourPunCallbacks
 {
+    public LobbyManager lobbyManager;
+
     public ScriptableCharacters[] avatars;
     public TextMeshProUGUI playerName;
     Image backgroundImage;
@@ -27,6 +29,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     private void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        lobbyManager = FindObjectOfType<LobbyManager>();
     }
 
     private void Start()

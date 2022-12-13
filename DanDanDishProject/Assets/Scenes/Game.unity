@@ -2091,7 +2091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: sounds.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: sounds.Array.data[1].name
@@ -2174,6 +2174,14 @@ PrefabInstance:
       value: FinishGame
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c6affc0cd0f3948438500876588f3df6, type: 3}
+    - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: Recarga
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: sounds.Array.data[2].group
       value: 
       objectReference: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
@@ -2238,6 +2246,14 @@ PrefabInstance:
       value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
+      propertyPath: sounds.Array.data[10].group
+      value: 
+      objectReference: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
+      propertyPath: sounds.Array.data[10].pitch
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: sounds.Array.data[2].volume
       value: 0.5
       objectReference: {fileID: 0}
@@ -2267,6 +2283,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
       propertyPath: sounds.Array.data[9].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917965994361244268, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
+      propertyPath: sounds.Array.data[10].volume
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6917965994361244269, guid: 52fb12cc100225e44925ecc8205961a9, type: 3}
@@ -3166,7 +3186,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 699247002}
+      - m_Target: {fileID: 175583998}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6

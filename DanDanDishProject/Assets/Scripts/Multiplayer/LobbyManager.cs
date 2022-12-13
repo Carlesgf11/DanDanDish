@@ -187,7 +187,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Game");
     }
 
-
     #region DisconnectFunctions
     public void DisconectDelay()
     {

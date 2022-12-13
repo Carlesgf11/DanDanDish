@@ -804,7 +804,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6382}
     - Class: 114
-      Script: {instanceID: 23540}
+      Script: {instanceID: 26308}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2349,7 +2349,7 @@ ScriptsOnlyBuild:
     className: StringInputField
   - hash:
       serializedVersion: 2
-      Hash: 238484a9c31e43fa04e5d8cb77b09073
+      Hash: 51c1fdf221e46089213e38fc6ae2012f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerItem

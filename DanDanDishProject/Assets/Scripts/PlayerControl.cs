@@ -177,6 +177,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         if (CurrentAction == 1)
         {
             shieldObj.SetActive(false);
+            audioManager.PlaySound("Recarga");
             ammo++;
             GameObject newArrow = Instantiate(arrowImage, playerGrid.transform.position, Quaternion.identity);
             newArrow.transform.parent = playerGrid.transform;
