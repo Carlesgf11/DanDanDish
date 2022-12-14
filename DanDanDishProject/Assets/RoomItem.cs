@@ -6,7 +6,7 @@ using TMPro;
 
 public class RoomItem : MonoBehaviour
 {
-    public TextMeshProUGUI roomName;
+    public Text roomName;
     LobbyManager manager;
 
     private void Start()

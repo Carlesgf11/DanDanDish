@@ -86,8 +86,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -802,7 +804,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7194}
     - Class: 114
-      Script: {instanceID: 29354}
+      Script: {instanceID: 30104}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2191,7 +2193,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: 272ba6c1ec8fb07f160d8c9b346c0ce2
+      Hash: c4a0d04dfcd3f060f8d88b8f80a01bb5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomItem
@@ -2524,4 +2526,4 @@ ScriptsOnlyBuild:
     for 1.unity
   - Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
     for 2.unity
-  playerPath: D:/GitHub/DanDanDish/Build/DanDanDish.apk
+  playerPath: C:/Users/gonza/Documents/GitHub/DanDanDishCosa/APKS/BldTest1.apk
