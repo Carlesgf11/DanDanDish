@@ -77,12 +77,12 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         if (transform.parent.transform.parent == playersInstSpots[0])
         {
             opponent = playersInstSpots[1].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
-            IsPlayer1 = true;
+            IsPlayer1 = false;
         }
         else if (transform.parent.transform.parent == playersInstSpots[1])
         {
             opponent = playersInstSpots[0].transform.GetChild(0).transform.GetChild(0).GetComponent<PlayerControl>();
-            IsPlayer1 = false;
+            IsPlayer1 = true;
         }
     }
 
@@ -150,6 +150,9 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private void Update()
     {
         //currentActionOpponent = opponent.CurrentAction;
+
+        //if (Input.GetKeyDown(KeyCode.M))
+        //    manager.FinishGame(gameObject, IsPlayer1);
 
         switch (state)
         {

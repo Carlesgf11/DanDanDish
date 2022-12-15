@@ -219,7 +219,15 @@ public class GameManager : MonoBehaviour
     public void FinishGame(GameObject _winner, bool _isPlayer1)
     {
         winnerPanel.SetActive(true);
-        winnerText.text = _winner.name + " wins";
+
+        int tempPlayer = 0;
+
+        if (_isPlayer1)
+            tempPlayer = 1;
+        else
+            tempPlayer = 2;
+
+        winnerText.text = "Player " + tempPlayer + " wins";
         audioManager.PlaySound("FinishGame");
         print(_winner + "Wins");
         state = GameState.GAMEFINISHED;
@@ -232,13 +240,13 @@ public class GameManager : MonoBehaviour
 
         audioManager.PlaySound("RockExplosion");
 
-        if (_isPlayer1)
+        if (!_isPlayer1)
         {
             finalPos = structurePos1.position;
             finaldir = -1;
             Destroy(structure1);
         }
-        if (!_isPlayer1)
+        if (_isPlayer1)
         {
             finalPos = structurePos2.position;
             Destroy(structure2);
