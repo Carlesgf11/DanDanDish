@@ -1,0 +1,4 @@
+- Animación ganar (timeline)
+- Acabar UI pantalla game
+- Acabar UI pantalla character selector
+- Multi xD

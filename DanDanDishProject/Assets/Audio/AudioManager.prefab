@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6917965994361244275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6917965994361244269}
+  - component: {fileID: 6917965994361244268}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6917965994361244269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917965994361244275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.17782317, y: 0.2629399, z: -10.505933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6917965994361244268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917965994361244275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd89d1f2b499d842967824390256c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+  sounds:
+  - name: Player_Boing
+    clip: {fileID: 8300000, guid: 0881b57dc66b1c84bbf023244a06f1b8, type: 3}
+    group: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player_Shield
+    clip: {fileID: 8300000, guid: d537185ef753ccd40b0e49a2f079c985, type: 3}
+    group: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UI_Btn1
+    clip: {fileID: 8300000, guid: 8afd444c06f4f9346a6a35738d10823b, type: 3}
+    group: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayCharSelect
+    clip: {fileID: 8300000, guid: 3a6de7bec22513040baa3360fd654f33, type: 3}
+    group: {fileID: -9024190840426076649, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.85
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MusicDrumps
+    clip: {fileID: 8300000, guid: d69901298dddcbc4f8b8eb406837e0fa, type: 3}
+    group: {fileID: -5771833931840626138, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MusicMenu
+    clip: {fileID: 8300000, guid: 312a0dbfb4ffc064abc73e2bcc66df68, type: 3}
+    group: {fileID: -5771833931840626138, guid: de596cdb41b9c4c41b0416e4b28edb96, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
