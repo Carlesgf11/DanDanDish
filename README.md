@@ -1,2 +1,2 @@
 # DanDanDish
- Pium pium
+ Online mobile "Rock, paper, scissors" game
